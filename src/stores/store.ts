@@ -1,53 +1,43 @@
-import { applySnapshot, Instance, process, SnapshotIn, SnapshotOut, types } from "mobx-state-tree";
+import { Container } from "unstated";
 
-let store: IStore = null as any;
-
-function waitMs(ms: number) {
-  return new Promise((resolve) => setTimeout(() => resolve(ms), ms));
+export interface IStore {
+  value: number;
 }
 
-const Store = types
-  .model({
-    foo: types.number,
-    lastUpdate: types.Date,
-    light: false,
-  })
-  .actions((self) => {
-    let timer;
-    const start = () => {
-      timer = setInterval(() => {
-        // mobx-state-tree doesn't allow anonymous callbacks changing data.
-        // Pass off to another action instead (need to cast self as any
-        // because typescript doesn't yet know about the actions we're
-        // adding to self here)
-        (self as any).update();
-      }, 1000);
-    };
-    const update = () => {
-      self.lastUpdate = new Date(Date.now());
-      self.light = true;
-    };
-    const stop = () => {
-      clearInterval(timer);
-    };
-    return { start, stop, update };
-  });
+export class Store extends Container<IStore> {
+  constructor(value: number = 10) {
+    super();
+    this.state = { value };
+  }
 
-type IStore = Instance<typeof Store>;
-type IStoreSnapshotIn = SnapshotIn<typeof Store>;
-type IStoreSnapshotOut = SnapshotOut<typeof Store>;
+  applySnapshot(snapshot: Partial<IStore>) {
+    this.setState({
+      value: snapshot.value,
+    });
+  }
 
-const initializeStore = (isServer, snapshot = null) => {
+  getSnapshot() {
+    return this.state;
+  }
+
+  increment() {
+    this.setState({ value: this.state.value + 1 });
+  }
+
+  decrement() {
+    this.setState({ value: this.state.value - 1 });
+  }
+
+}
+
+export const initializeStore = (isServer, snapshot?: Partial<IStore>) => {
   if (isServer) {
-    store = Store.create({ foo: 6, lastUpdate: Date.now() });
+    return new Store(15);
+  } else if (snapshot) {
+    const store = new Store();
+    store.applySnapshot(snapshot);
+    return store;
+  } else {
+    return new Store();
   }
-  if (store as any === null) {
-    store = Store.create({ foo: 6, lastUpdate: Date.now() });
-  }
-  if (snapshot) {
-    applySnapshot(store, snapshot);
-  }
-  return store;
 };
-
-export { initializeStore, IStore, IStoreSnapshotIn, IStoreSnapshotOut };

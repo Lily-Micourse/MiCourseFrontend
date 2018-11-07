@@ -19,6 +19,7 @@
     "space-before-function-paren": false,
     "ter-indent": [true, 2],
     "member-access": false,
-    "ordered-imports": false
+    "ordered-imports": false,
+    "interface-name": false
   }
 }

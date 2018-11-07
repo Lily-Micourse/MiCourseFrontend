@@ -1,8 +1,7 @@
-import { Provider } from "mobx-react";
-import { getSnapshot } from "mobx-state-tree";
+import { Provider } from "unstated";
 import App, { Container } from "next/app";
 import React from "react";
-import { initializeStore, IStore } from "../src/stores/store";
+import { initializeStore, IStore, Store } from "../src/stores/store";
 
 interface IOwnProps {
   isServer: boolean;
@@ -18,6 +17,7 @@ class MyApp extends App<IOwnProps> {
     //
     const isServer = (typeof window === "undefined");
     const store = initializeStore(isServer);
+    console.log(store);
     //
     // Check whether the page being rendered by the App has a
     // static getInitialProps method and if so call it
@@ -27,24 +27,24 @@ class MyApp extends App<IOwnProps> {
       pageProps = await Component.getInitialProps(ctx);
     }
     return {
-      initialState: getSnapshot(store),
+      initialState: store.getSnapshot(),
       isServer,
       pageProps,
     };
   }
 
-  public store: IStore;
+  private store: Store;
 
   constructor(props) {
     super(props);
     this.store = initializeStore(props.isServer, props.initialState);
   }
 
-  public render() {
+  render() {
     const { Component, pageProps } = this.props;
     return (
       <Container>
-        <Provider store={this.store}>
+        <Provider inject={[this.store]}>
           <Component {...pageProps} />
         </Provider>
       </Container>

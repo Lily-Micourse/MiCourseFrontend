@@ -12,9 +12,9 @@ describe("Pages", () => {
           <IndexPage />
         </TestProvider>,
       );
-      const actual = wrap.find("p").text();
+      const actual = wrap.find("span").text();
 
-      expect(actual).toBe("Hello Next.js");
+      expect(actual).toBe("10");
     });
   });
 });

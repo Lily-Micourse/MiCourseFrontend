@@ -1,12 +1,12 @@
 import * as React from "react";
-import { Provider } from "mobx-react";
 import { initializeStore } from "../../src/stores/store";
+import { Provider } from "unstated";
 
 export default ({ children }) => {
-  const testStore = initializeStore(false);
+  const testStore = initializeStore(false, { value: 10 });
 
   return (
-    <Provider store={testStore}>
+    <Provider inject={[testStore]}>
       {children}
     </Provider>
   );

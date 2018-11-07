@@ -1,9 +1,7 @@
-import { observer } from "mobx-react";
-import Link from "next/link";
 import * as React from "react";
-import injectStore from "../stores/injectStore";
-import { IStore } from "../stores/store";
-import { Clock } from "./Clock";
+import { IStore, Store } from "../stores/store";
+import { Subscribe } from "unstated";
+import Link from "next/link";
 
 interface IOwnProps {
   store?: IStore;
@@ -11,41 +9,21 @@ interface IOwnProps {
   linkTo: string;
 }
 
-@injectStore
-@observer
-class SampleComponent extends React.Component<IOwnProps> {
-  componentDidMount() {
-    if (!this.props.store) {
-      return;
-    }
-    this.props.store.start();
-  }
-
-  componentWillUnmount() {
-    if (!this.props.store) {
-      return;
-    }
-    this.props.store.stop();
-  }
-
+export default class SampleComponent extends React.Component<IOwnProps> {
   render() {
-    if (!this.props.store) {
-      return (
-        <div>
-          Store not defined
-        </div>
-      );
-    }
     return (
-      <div>
-        <h1>{this.props.title}</h1>
-        <Clock lastUpdate={this.props.store.lastUpdate} light={this.props.store.light} />
-        <nav>
-          <Link href={this.props.linkTo}><a>Navigate</a></Link>
-        </nav>
-      </div>
+      <Subscribe to={[Store]}>
+        {(store: Store) => {
+          return <div>
+            <p>Current value: <span>{store.state.value}</span></p>
+            <h1>{this.props.title}</h1>
+            <button onClick={() => store.increment()}>Increment</button>
+            <button onClick={() => store.decrement()}>Decrement</button>
+            <br />
+            <Link href={this.props.linkTo}><span>To another page</span></Link>
+          </div>;
+        }}
+      </Subscribe>
     );
   }
 }
-
-export { SampleComponent };
