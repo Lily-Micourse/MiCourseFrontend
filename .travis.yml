@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+- "lts/*"
+cache:
+  directories:
+  - node_modules
+branchs:
+  only:
+  - master
+before_install:
+- openssl aes-256-cbc -K $encrypted_2439531cc88f_key -iv $encrypted_2439531cc88f_iv
+  -in id_rsa.enc -out /home/travis/.ssh/id_rsa -d
+- chmod 600 ~/.ssh/id_rsa
+- echo -e "Host 106.14.199.196\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+after_success:
+ - ssh travis@106.14.199.196  'cd /home/MiCourseFrontend && git pull && yarn install && yarn run build && pm2 start npm --name "next" -- start'

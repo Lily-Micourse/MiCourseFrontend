@@ -1,0 +1,44 @@
+{
+  "name": "micourse-frontend",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "lint": "tslint -c tslint.json -p tsconfig.json --fix",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "migrate": "ts-jest config:migrate ./jest.config.js"
+  },
+  "dependencies": {
+    "@types/enzyme": "^3.1.15",
+    "@types/enzyme-adapter-react-16": "^1.0.3",
+    "@types/jest": "^23.3.9",
+    "@zeit/next-typescript": "1.1.1",
+    "axios": "^0.18.0",
+    "axios-mock-adapter": "^1.15.0",
+    "babel-jest": "^23.6.0",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.6.0",
+    "jest": "^23.6.0",
+    "mobx": "5.6.0",
+    "mobx-react": "5.3.6",
+    "mobx-state-tree": "3.7.1",
+    "next": "^7.0.2",
+    "react": "^16.6.1",
+    "react-dom": "^16.6.1",
+    "ts-jest": "^23.10.4",
+    "typescript": "^3.1.6"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.1.2",
+    "@types/next": "^7.0.3",
+    "@types/react": "^16.4.18",
+    "tslint": "^5.11.0",
+    "tslint-config-standard": "^8.0.1",
+    "tslint-loader": "^3.5.4",
+    "tslint-react": "^3.6.0"
+  },
+  "license": "ISC"
+}
