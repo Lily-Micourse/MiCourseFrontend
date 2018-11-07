@@ -15,7 +15,7 @@ export default class SampleComponent extends React.Component<IOwnProps> {
       <Subscribe to={[Store]}>
         {(store: Store) => {
           return <div>
-            <p>Current value: <span>{store.state.value}</span></p>
+            <p>Current value: <span id="value">{store.state.value}</span></p>
             <h1>{this.props.title}</h1>
             <button onClick={() => store.increment()}>Increment</button>
             <button onClick={() => store.decrement()}>Decrement</button>

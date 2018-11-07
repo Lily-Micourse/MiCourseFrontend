@@ -2240,6 +2240,11 @@ deep-is@~0.1.3:
   resolved "http://registry.npm.taobao.org/deep-is/download/deep-is-0.1.3.tgz#b369d6fb5dbc13eecf524f91b070feedc357cf34"
   integrity sha1-s2nW+128E+7PUk+RsHD+7cNXzzQ=
 
+deep-object-diff@^1.1.0:
+  version "1.1.0"
+  resolved "http://registry.npm.taobao.org/deep-object-diff/download/deep-object-diff-1.1.0.tgz#d6fabf476c2ed1751fc94d5ca693d2ed8c18bc5a"
+  integrity sha1-1vq/R2wu0XUfyU1cppPS7YwYvFo=
+
 default-require-extensions@^1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.taobao.org/default-require-extensions/download/default-require-extensions-1.0.0.tgz#f37ea15d3e13ffd9b437d33e1a75b5fb97874cb8"
@@ -3377,6 +3382,11 @@ ignore-walk@^3.0.1:
   integrity sha1-qD5i59JyrA47VRqqgoMaGbafgvg=
   dependencies:
     minimatch "^3.0.4"
+
+immer@^1.7.4:
+  version "1.7.4"
+  resolved "http://registry.npm.taobao.org/immer/download/immer-1.7.4.tgz#b9a833a61cbeee477a3694870b172c590837a963"
+  integrity sha1-uagzphy+7kd6NpSHCxcsWQg3qWM=
 
 import-local@^1.0.0:
   version "1.0.0"
@@ -6843,6 +6853,13 @@ unset-value@^1.0.0:
   dependencies:
     has-value "^0.3.1"
     isobject "^3.0.0"
+
+unstated-debug@^0.3.2:
+  version "0.3.2"
+  resolved "http://registry.npm.taobao.org/unstated-debug/download/unstated-debug-0.3.2.tgz#8753fb159c82ebec0a5fc0715c03ea5086cb3677"
+  integrity sha1-h1P7FZyC6+wKX8BxXAPqUIbLNnc=
+  dependencies:
+    deep-object-diff "^1.1.0"
 
 unstated@^2.1.1:
   version "2.1.1"

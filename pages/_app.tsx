@@ -3,6 +3,10 @@ import App, { Container } from "next/app";
 import React from "react";
 import { initializeStore, IStore, Store } from "../src/stores/store";
 
+import UNSTATED from "unstated-debug";
+
+UNSTATED.logStateChanges = true;
+
 interface IOwnProps {
   isServer: boolean;
   initialState: IStore;

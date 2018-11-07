@@ -12,7 +12,7 @@ describe("Pages", () => {
           <IndexPage />
         </TestProvider>,
       );
-      const actual = wrap.find("span").text();
+      const actual = wrap.find("#value").text();
 
       expect(actual).toBe("10");
     });
