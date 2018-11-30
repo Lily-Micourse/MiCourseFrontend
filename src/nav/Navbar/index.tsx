@@ -1,8 +1,6 @@
 import * as React from "react";
-import { WithRouterProps, withRouter } from "next/router";
-import { Navbar as BSNavbar, Container, Row, NavbarBrand, Col, Input } from "reactstrap";
-import MediaQuery from "react-responsive";
-import breakpoints from "../utils/breakpoints";
+import { withRouter, WithRouterProps } from "next/router";
+import { Col, Container, Navbar as BSNavbar, NavbarBrand, Row } from "reactstrap";
 import Logo from "./Logo";
 
 interface Props extends WithRouterProps {
