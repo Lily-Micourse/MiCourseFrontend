@@ -19,6 +19,7 @@
     "axios": "^0.18.0",
     "axios-mock-adapter": "^1.15.0",
     "babel-jest": "^23.6.0",
+    "babel-plugin-root-import": "^6.1.0",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.7.0",
     "immer": "^1.8.0",

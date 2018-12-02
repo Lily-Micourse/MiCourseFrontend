@@ -11,10 +11,6 @@
     "max-line-length": false,
     "no-console": false,
     "no-object-literal-type-assertion": false,
-    "no-submodule-imports": [
-      true, 
-      "next"
-    ],
     "no-unused-variable": false,
     "space-before-function-paren": false,
     "ter-indent": [true, 2],
@@ -23,6 +19,8 @@
     "interface-name": false,
     "no-trailing-whitespace": false,
     "no-empty-interface": false,
-    "object-literal-sort-keys": false
+    "object-literal-sort-keys": false,
+    "no-implicit-dependencies": false,
+    "no-submodule-imports": false
   }
 }

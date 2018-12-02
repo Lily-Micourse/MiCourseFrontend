@@ -4,6 +4,13 @@
     "@zeit/next-typescript/babel"
   ],
   "plugins": [
-    ["@babel/plugin-proposal-decorators", { "legacy": true }]
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    [
+      "babel-plugin-root-import",
+      {
+        "rootPathSuffix": "src",
+        "rootPathPrefix": "@"
+      }
+    ]
   ]
 }

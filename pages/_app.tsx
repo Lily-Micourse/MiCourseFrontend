@@ -1,7 +1,7 @@
 import { Provider } from "unstated";
 import App, { Container } from "next/app";
-import React from "react";
-import { initializeStore, IStore, Store } from "../src/stores/store";
+import * as React from "react";
+import { initializeStore, IRootStore, RootStore } from "@/stores";
 
 import UNSTATED from "unstated-debug";
 
@@ -9,10 +9,10 @@ UNSTATED.logStateChanges = true;
 
 interface IOwnProps {
   isServer: boolean;
-  initialState: IStore;
+  initialState: IRootStore;
 }
 
-class MyApp extends App<IOwnProps> {
+export default class MyApp extends App<IOwnProps> {
 
   public static async getInitialProps({ Component, router, ctx }) {
     //
@@ -37,7 +37,7 @@ class MyApp extends App<IOwnProps> {
     };
   }
 
-  private store: Store;
+  private store: RootStore;
 
   constructor(props) {
     super(props);
@@ -55,5 +55,3 @@ class MyApp extends App<IOwnProps> {
     );
   }
 }
-
-export default MyApp;
