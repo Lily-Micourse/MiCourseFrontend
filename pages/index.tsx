@@ -1,11 +1,12 @@
 import * as React from "react";
+import IndexLayout from "@/layout/IndexLayout";
 
 export default class IndexPage extends React.Component {
   render() {
     return (
-      <div>
+      <IndexLayout>
         <p>Hello Next.js</p>
-      </div>
+      </IndexLayout>
     );
   }
 }
