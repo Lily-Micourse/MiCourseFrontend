@@ -1,6 +1,6 @@
 import { HttpMethod, HttpService } from "./HttpService";
 
-interface LoginResponse {
+export interface LoginResponse {
   token?: string;
   error?: "incorrect" | "frozen";
 }
@@ -8,6 +8,9 @@ interface LoginResponse {
 export class UserService extends HttpService {
 
   async login(username: string, password: string): Promise<LoginResponse> {
+
+    // execute real fetch
+
     return this.fetch<LoginResponse>({
       method: HttpMethod.GET,
       params: { username, password },

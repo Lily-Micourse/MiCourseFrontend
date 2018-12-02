@@ -3,7 +3,10 @@ import App, { Container } from "next/app";
 import * as React from "react";
 import { initializeStore, IRootStore, RootStore } from "@/stores";
 
+import "bootstrap/dist/css/bootstrap.min.css";
+
 import UNSTATED from "unstated-debug";
+import { allServices } from "@/apis";
 
 UNSTATED.logStateChanges = true;
 
@@ -21,7 +24,6 @@ export default class MyApp extends App<IOwnProps> {
     //
     const isServer = (typeof window === "undefined");
     const store = initializeStore(isServer);
-    console.log(store);
     //
     // Check whether the page being rendered by the App has a
     // static getInitialProps method and if so call it
@@ -42,13 +44,14 @@ export default class MyApp extends App<IOwnProps> {
   constructor(props) {
     super(props);
     this.store = initializeStore(props.isServer, props.initialState);
+
   }
 
   render() {
     const { Component, pageProps } = this.props;
     return (
       <Container>
-        <Provider inject={[this.store]}>
+        <Provider inject={[...allServices, this.store]}>
           <Component {...pageProps} />
         </Provider>
       </Container>

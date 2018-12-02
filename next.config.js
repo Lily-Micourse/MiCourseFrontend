@@ -1,7 +1,12 @@
 const withTypescript = require("@zeit/next-typescript");
 const withImages = require('next-images');
-module.exports = withImages(
-  withTypescript(
+const withCss = require("@zeit/next-css");
 
-  )
-);
+
+const plugins = [
+  withCss,
+  withImages,
+  withTypescript
+];
+
+module.exports = plugins.reduce((prev, curr) => curr(prev), {});
