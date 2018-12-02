@@ -40,7 +40,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.1.6",
     "@types/next": "^7.0.5",
-    "@types/react": "^16.7.10",
+    "@types/react": "^16.7.11",
     "@types/react-responsive": "^3.0.2",
     "@types/reactstrap": "^6.4.3",
     "tslint": "^5.11.0",

@@ -3,8 +3,6 @@ import App, { Container } from "next/app";
 import * as React from "react";
 import { initializeStore, IRootStore, RootStore } from "@/stores";
 
-import "bootstrap/dist/css/bootstrap.min.css";
-
 import UNSTATED from "unstated-debug";
 import { allServices } from "@/apis";
 
