@@ -2,7 +2,6 @@ import * as React from "react";
 import { Form, FormGroup, Input, Label } from "reactstrap";
 
 interface Props {
-
 }
 
 export default class SearchBar extends React.Component<Props> {

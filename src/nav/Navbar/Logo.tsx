@@ -9,8 +9,12 @@ function LogoImg({ brand }) {
   return <img src={brand} alt="logo" />;
 }
 
+
+
 export default function Logo() {
+  
   return (
+    <>
     <div>
       <MediaQuery maxWidth={breakpoints.xsMax}>
         <LogoImg brand={S} />
@@ -22,5 +26,6 @@ export default function Logo() {
         <LogoImg brand={L} />
       </MediaQuery>
     </div>
+    </>
   );
 }

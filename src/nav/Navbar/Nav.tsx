@@ -4,13 +4,13 @@ import breakpoints from "@/utils/breakpoints";
 import { NavbarToggler, Nav as BSNav } from "reactstrap";
 
 const toggleStyle = {
-  borderColor: "white",
+  // borderColor: "white",
 }
 
 export default class Nav extends React.Component {
   render() {
     return (
-      <div>
+      <>
         <NavbarToggler style={toggleStyle} color={"white"} className="mr-2"/>
         <MediaQuery maxWidth={breakpoints.xsMax}>
           <div>xs</div>
@@ -18,7 +18,7 @@ export default class Nav extends React.Component {
         <MediaQuery minWidth={breakpoints.sm}>
          <div>sm</div>
         </MediaQuery>
-      </div>
+      </>
     );
   }
 }

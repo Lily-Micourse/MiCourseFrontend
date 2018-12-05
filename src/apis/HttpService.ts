@@ -25,7 +25,7 @@ export interface HttpError {
 export class HttpService extends Container<{}> {
   private axiosInstance: AxiosInstance;
 
-  constructor(protected useMock: boolean) {
+  constructor() {
     super();
     this.axiosInstance = axios.create({ baseURL: "" });
   }
