@@ -13,10 +13,10 @@ export default function Logo() {
   return (
     <div>
       <MediaQuery maxWidth={breakpoints.xsMax}>
-        <LogoImg brand={S} />;
+        <LogoImg brand={S} />
       </MediaQuery>
-      <MediaQuery maxWidth={breakpoints.mdMax}>
-        <LogoImg brand={M} />;
+      <MediaQuery maxWidth={breakpoints.mdMax} minWidth={breakpoints.sm}>
+        <LogoImg brand={M} />
       </MediaQuery>
       <MediaQuery minWidth={breakpoints.lg}>
         <LogoImg brand={L} />
