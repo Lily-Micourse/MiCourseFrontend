@@ -9,8 +9,6 @@ function LogoImg({ brand }) {
   return <img src={brand} alt="logo" />;
 }
 
-
-
 export default function Logo() {
   
   return (
@@ -26,6 +24,12 @@ export default function Logo() {
         <LogoImg brand={L} />
       </MediaQuery>
     </div>
+
+      /*language=CSS*/
+      <style jsx>{`
+
+      `}
+      </style>
     </>
   );
 }

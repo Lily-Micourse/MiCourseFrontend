@@ -21,6 +21,7 @@
     "no-empty-interface": false,
     "object-literal-sort-keys": false,
     "no-implicit-dependencies": false,
-    "no-submodule-imports": false
+    "no-submodule-imports": false,
+    "jsx-boolean-value": false
   }
 }

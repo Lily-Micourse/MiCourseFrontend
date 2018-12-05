@@ -22,11 +22,10 @@ export interface HttpError {
   data?: any;
 }
 
-export class HttpService extends Container<{}> {
+export class HttpService {
   private axiosInstance: AxiosInstance;
 
   constructor() {
-    super();
     this.axiosInstance = axios.create({ baseURL: "" });
   }
 

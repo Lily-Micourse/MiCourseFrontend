@@ -1,10 +1,20 @@
-import { UserService } from "@/apis/UserService";
-import { Container } from "unstated";
+import * as React from "react";
+import { HttpService } from "@/apis/HttpService";
+import defaultServiceMap from "./defaultServiceMap";
 
-const USE_MOCK = false;
+export type ServiceMap = Map<typeof HttpService, HttpService>;
 
-export const allServices = [
-  new UserService(USE_MOCK),
-];
+export const ApiContext = React.createContext(defaultServiceMap as ServiceMap);
 
-export default allServices;
+interface Props {
+  services?: Map<typeof HttpService, HttpService>;
+  children: React.ReactNode;
+}
+
+export function ApiProvider({ services, children }: Props) {
+  return (
+    <ApiContext.Provider value={services || defaultServiceMap}>
+      {children}
+  </ApiContext.Provider>
+  );
+}

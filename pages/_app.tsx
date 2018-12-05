@@ -1,10 +1,10 @@
-import { Provider } from "unstated";
+import { Provider as UnstatedProvider } from "unstated";
 import App, { Container } from "next/app";
 import * as React from "react";
 import { initializeStore, IRootStore, RootStore } from "@/stores";
 
 import UNSTATED from "unstated-debug";
-import { allServices } from "@/apis";
+import { ApiProvider } from "@/apis";
 
 UNSTATED.logStateChanges = true;
 
@@ -15,7 +15,7 @@ interface IOwnProps {
 
 export default class MyApp extends App<IOwnProps> {
 
-  public static async getInitialProps({ Component, router, ctx }) {
+  public static async getInitialProps({Component, router, ctx}) {
     //
     // Use getInitialProps as a step in the lifecycle when
     // we can initialize our store
@@ -49,9 +49,11 @@ export default class MyApp extends App<IOwnProps> {
     const { Component, pageProps } = this.props;
     return (
       <Container>
-        <Provider inject={[...allServices, this.store]}>
-          <Component {...pageProps} />
-        </Provider>
+        <ApiProvider>
+          <UnstatedProvider inject={[this.store]}>
+            <Component {...pageProps} />
+          </UnstatedProvider>
+        </ApiProvider>
       </Container>
     );
   }
