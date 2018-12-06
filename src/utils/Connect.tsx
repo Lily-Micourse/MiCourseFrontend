@@ -1,15 +1,11 @@
 import * as React from "react";
 import { Container, ContainerType, Subscribe } from "unstated";
 import { HttpService } from "@/apis/HttpService";
-import { ApiContext } from "@/apis";
+import { ApiContext, HttpServiceType } from "@/apis";
 
 /*
 使用示例参考__tests__/connect.spec.tsx
 */
-
-interface HttpServiceType {
-  new(...args: any[]): HttpService;
-}
 
 export interface ConnectProps<CT extends Array<ContainerType<any>>,
   ST extends HttpServiceType[],

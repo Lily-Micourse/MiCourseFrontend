@@ -1,9 +1,9 @@
 import * as React from "react";
 import MediaQuery from "react-responsive";
 import breakpoints from "@/utils/breakpoints";
-import S from "~/assets/img/Brand-S.png";
-import M from "~/assets/img/Brand-M.png";
-import L from "~/assets/img/Brand.png";
+import S from "~/static/img/Brand-S.png";
+import M from "~/static/img/Brand-M.png";
+import L from "~/static/img/Brand.png";
 import Router from "next/router";
 
 function LogoImg({ brand, width, height }) {

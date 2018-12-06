@@ -9,8 +9,6 @@ export class UserService extends HttpService {
 
   async login(username: string, password: string): Promise<LoginResponse> {
 
-    // execute real fetch
-
     return this.fetch<LoginResponse>({
       method: HttpMethod.GET,
       params: { username, password },

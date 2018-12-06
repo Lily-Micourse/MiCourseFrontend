@@ -1,12 +1,16 @@
 const withTypescript = require("@zeit/next-typescript");
-const withImages = require('next-images');
 const withCss = require("@zeit/next-css");
 
+const withPlugins = require('next-compose-plugins');
+const optimizedImages = require('next-optimized-images');
 
-const plugins = [
-  withCss,
-  withImages,
-  withTypescript
-];
 
-module.exports = plugins.reduce((prev, curr) => curr(prev), {});
+module.exports = withPlugins([
+  [optimizedImages, {
+    /* config for next-optimized-images */
+  }],
+  [withTypescript],
+  [withCss],
+  // your other plugins here
+
+]);
