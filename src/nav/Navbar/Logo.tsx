@@ -6,8 +6,8 @@ import M from "~/assets/img/Brand-M.png";
 import L from "~/assets/img/Brand.png";
 import Router from "next/router";
 
-function LogoImg({ brand }) {
-  return <img src={brand} alt="logo" onClick={() => Router.push("/")} style={{ cursor: "pointer" }}/>;
+function LogoImg({ brand, width, height }) {
+  return <img src={brand} width={width} height={height} alt="logo" onClick={() => Router.push("/")} style={{ cursor: "pointer" }}/>;
 }
 
 export default function Logo() {
@@ -16,37 +16,13 @@ export default function Logo() {
     <>
       <div className="center-vertical">
         <MediaQuery maxWidth={breakpoints.smMax}>
-          <LogoImg brand={S}/>
-          {/*language=CSS*/}
-          <style jsx global>{`
-            img {
-              width: 38px;
-              height: 40px;
-            }
-          `}
-          </style>
+          <LogoImg brand={S} width={38} height={40}/>
         </MediaQuery>
         <MediaQuery maxWidth={breakpoints.mdMax} minWidth={breakpoints.md}>
-          <LogoImg brand={M}/>
-          {/*language=CSS*/}
-          <style jsx global>{`
-            img {
-              width: 88.4px;
-              height: 40px;
-            }
-          `}
-          </style>
+          <LogoImg brand={M} width={88.4} height={40}/>
         </MediaQuery>
         <MediaQuery minWidth={breakpoints.lg}>
-          <LogoImg brand={L}/>
-          {/*language=CSS*/}
-          <style jsx global>{`
-            img {
-              width: 186px;
-              height: 40px;
-            }
-          `}
-          </style>
+          <LogoImg brand={L} width={186} height={40}/>
         </MediaQuery>
       </div>
       { /*language=CSS*/ }

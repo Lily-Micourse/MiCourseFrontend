@@ -13,15 +13,7 @@ export default class IndexPage extends React.Component<Props> {
   render() {
     return (
       <IndexLayout>
-        <Subscribe to={[UserService]}>
-          {(userService: UserService) => {
-            return <button onClick={() => {
-              console.log(userService.login("123", "123"));
-            }}>
               Try login
-            </button>;
-          }}
-        </Subscribe>
       </IndexLayout>
     );
   }

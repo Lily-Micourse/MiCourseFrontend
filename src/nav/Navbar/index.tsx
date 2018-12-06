@@ -1,6 +1,6 @@
 import * as React from "react";
 import { withRouter, WithRouterProps } from "next/router";
-import { Col, Container, Navbar as BSNavbar, Row, Dropdown, DropdownToggle} from "reactstrap";
+import { Col, Container, Navbar as BSNavbar, Row, Dropdown, DropdownToggle } from "reactstrap";
 import Logo from "./Logo";
 import SearchBar from "@/nav/Navbar/SearchBar";
 import MediaQuery from "react-responsive";
