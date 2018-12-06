@@ -3,7 +3,7 @@ import * as React from "react";
 import { Container, Provider } from "unstated";
 import { HttpService } from "@/apis/HttpService";
 import Connect, { tuple } from "@/utils/Connect";
-import { ApiProvider } from "@/apis";
+import ApiProvider from "@/apis/ApiProvider";
 
 // tslint:disable
 describe("Test injections", () => {
@@ -27,7 +27,7 @@ describe("Test injections", () => {
         return (
           <ApiProvider services={new Map([[OneHttpService, new OneHttpService()]])}>
             <Provider inject={[new OneContainer(), new AnotherContainer()]}>
-              <Connect containers={containers} services={services}>
+              <Connect stores={containers} services={services}>
                 {(containers, services) => <>
                   {containers.filter(x => !!x).length + services.filter(x => !!x).length}
                 </>}

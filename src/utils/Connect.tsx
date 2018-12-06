@@ -1,6 +1,5 @@
 import * as React from "react";
-import { Container, ContainerType, Subscribe } from "unstated";
-import { HttpService } from "@/apis/HttpService";
+import { ContainerType, Subscribe } from "unstated";
 import { ApiContext, HttpServiceType } from "@/apis";
 
 /*
@@ -10,27 +9,29 @@ import { ApiContext, HttpServiceType } from "@/apis";
 export interface ConnectProps<CT extends Array<ContainerType<any>>,
   ST extends HttpServiceType[],
   > {
-  containers?: CT;
+  stores?: CT;
   services?: ST;
   children: (
     // @ts-ignore
-    containers: { [CK in keyof CT]: InstanceType<CT[CK]> },
+    stores: { [CK in keyof CT]: InstanceType<CT[CK]> },
     // @ts-ignore
     services: { [SK in keyof ST]: InstanceType<ST[SK]> },
   ) => React.ReactNode;
 }
 
-export default function Connect<CT extends Array<ContainerType<any>> = [],
-  ST extends HttpServiceType[] = []>
-({ containers = [] as any, services = [] as any, children }: ConnectProps<CT, ST>) {
+export default function Connect<
+  CT extends Array<ContainerType<any>> = [],
+  ST extends HttpServiceType[] = []
+  >
+({ stores = [] as any, services = [] as any, children }: ConnectProps<CT, ST>) {
   // @ts-ignore
   return (
     <ApiContext.Consumer>
       {(serviceMap) =>
-        <Subscribe to={containers}>
-          {(...injectedContainers) =>
+        <Subscribe to={stores}>
+          {(...injectedStores) =>
             children(
-              injectedContainers as any,
+              injectedStores as any,
               services.map((x) => serviceMap.get(x)) as any,
             )}
         </Subscribe>
@@ -38,6 +39,8 @@ export default function Connect<CT extends Array<ContainerType<any>> = [],
     </ApiContext.Consumer>
   );
 }
+
+
 
 export function tuple<T extends any[]>(...data: T) {
   return data;
