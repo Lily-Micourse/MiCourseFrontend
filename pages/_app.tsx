@@ -1,10 +1,14 @@
 import { Provider as UnstatedProvider } from "unstated";
 import App, { Container } from "next/app";
 import * as React from "react";
-import { initializeStore, IRootStore, RootStore } from "@/stores";
+import { RootStore } from "@/stores/RootStore";
 
 import UNSTATED from "unstated-debug";
-import { ApiProvider } from "@/apis";
+
+import ApiProvider from "@/apis/ApiProvider";
+import serviceConfig from "@/apis/serviceConfig";
+import storeConfig, { IRootStore } from "@/stores/storeConfig";
+import StoreProvider from "@/stores/StoreProvider";
 
 UNSTATED.logStateChanges = true;
 
@@ -15,13 +19,13 @@ interface IOwnProps {
 
 export default class MyApp extends App<IOwnProps> {
 
-  public static async getInitialProps({Component, router, ctx}) {
+  public static async getInitialProps({ Component, router, ctx }) {
     //
     // Use getInitialProps as a step in the lifecycle when
     // we can initialize our store
     //
     const isServer = (typeof window === "undefined");
-    const store = initializeStore(isServer);
+    const store = new RootStore(storeConfig, isServer);
     //
     // Check whether the page being rendered by the App has a
     // static getInitialProps method and if so call it
@@ -31,7 +35,7 @@ export default class MyApp extends App<IOwnProps> {
       pageProps = await Component.getInitialProps(ctx);
     }
     return {
-      initialState: store.getSnapshot(),
+      initialState: store.storeState,
       isServer,
       pageProps,
     };
@@ -41,7 +45,7 @@ export default class MyApp extends App<IOwnProps> {
 
   constructor(props) {
     super(props);
-    this.store = initializeStore(props.isServer, props.initialState);
+    this.store = new RootStore(storeConfig, props.isServer, props.initialState);
 
   }
 
@@ -49,10 +53,10 @@ export default class MyApp extends App<IOwnProps> {
     const { Component, pageProps } = this.props;
     return (
       <Container>
-        <ApiProvider>
-          <UnstatedProvider inject={[this.store]}>
+        <ApiProvider services={serviceConfig}>
+          <StoreProvider rootStore={this.store}>
             <Component {...pageProps} />
-          </UnstatedProvider>
+          </StoreProvider>
         </ApiProvider>
       </Container>
     );

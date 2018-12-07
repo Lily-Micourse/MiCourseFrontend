@@ -9,10 +9,12 @@ const services = [
   [ UserService, USE_MOCK ? UserServiceMock : UserService],
 ];
 
-const serviceMap = new Map<HttpServiceType<HttpService>, HttpService>();
+export type ServiceConfig = Map<HttpServiceType<HttpService>, HttpService>;
+
+const serviceConfig: ServiceConfig = new Map();
 
 services.forEach((item) => {
-  serviceMap.set(item[0], new item[1]());
+  serviceConfig.set(item[0], new item[1]());
 });
 
-export default serviceMap;
+export default serviceConfig;

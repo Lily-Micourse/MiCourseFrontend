@@ -1,19 +1,28 @@
 import * as React from "react";
 import IndexLayout from "@/layout/IndexLayout";
-import { Subscribe } from "unstated";
 import { UserService } from "@/apis/UserService";
-import connect from "@/utils/Connect";
+import Connect, { tuple } from "@/utils/Connect";
+import { UserStore } from "@/stores/UserStore";
+import { connect, ConnectedProps } from "@/utils/ConnectHOC";
 
-interface Props {
+interface Props extends ConnectedProps {
 
 }
 
+@connect({
+  stores: [UserStore],
+})
 export default class IndexPage extends React.Component<Props> {
 
   render() {
+    const userStore = this.props.useStore(UserStore);
+    const userService = this.props.useService(UserService);
     return (
       <IndexLayout>
-              Try login
+        <p>
+          {userStore ? "store ok" : "store not ok"}
+          {userService ? "service ok" : "service not ok"}
+        </p>;
       </IndexLayout>
     );
   }
