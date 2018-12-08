@@ -21,10 +21,12 @@ interface NavBarMenuItemProps {
 }
 
 function NavItemWithLink(props: { href: string; routePath: string; title: string; }) {
+  const activeLink = { borderBottom: "white 2px solid" };
+  const nonActiveLink = { };
   return (
     <NavItem >
       <Link href={props.href}>
-        <NavLink active={props.routePath === props.href} >
+        <NavLink style={props.routePath === props.href ? activeLink : nonActiveLink} >
           {props.title}
         </NavLink>
       </Link>
@@ -33,9 +35,11 @@ function NavItemWithLink(props: { href: string; routePath: string; title: string
 }
 
 function DropItemWithLink(props: { href: string; routePath: string, title: string }) {
+  const activeLink = { borderLeft: "8px solid #54abd4", color: "#54abd4" };
+  const nonActiveLink = { };
   return (
     <Link href={props.href}>
-      <DropdownItem active={props.routePath === props.href}>{props.title}</DropdownItem>
+      <DropdownItem style={props.routePath === props.href ? activeLink : nonActiveLink}>{props.title}</DropdownItem>
     </Link>
   );
 }
@@ -43,7 +47,7 @@ function DropItemWithLink(props: { href: string; routePath: string, title: strin
 function NavbarMenu(props: { path: string}) {
   return (
     <>
-      <Nav navbar={true} className="center-vertical">
+      <Nav navbar={true} className="center-vertical pull-right">
         <NavItemWithLink href="/" routePath={props.path} title="首页"/>
         <NavItemWithLink href="/course" routePath={props.path} title="课程"/>
         <NavItemWithLink href="/notice" routePath={props.path} title="公告"/>
@@ -55,19 +59,14 @@ function NavbarMenu(props: { path: string}) {
           color: white;
           margin: 0 0 0 8px;
           cursor: pointer;
+          font-size: 1rem;
         }
-
         .navbar-nav > li > a:hover {
           border-bottom: white 2px solid;
         }
-
-        .active {
-          border-bottom: white 2px solid;
-        }
-
-        ul {
-          float: right;
-        }
+        /*.active {*/
+          /*border-bottom: white 2px solid;*/
+        /*}*/
 
       `}
       </style>
@@ -94,19 +93,19 @@ function NavDropdownMenu(props: {path: string}) {
             border-radius: 1px;
           }
           .dropdown-item {
-            margin: 4px 0;
-            color: #333!important;
-            padding: 12px 16px;
-            border-left: 3px solid #7d7d7d;
-            background-color:transparent !important;
-            outline: none !important;
-           cursor: pointer;
-        }
-          .active{
-            border-left: 8px solid #54abd4;
-            background-color:transparent !important;
-            color: #54abd4 !important;
+              margin: 4px 0;
+              color: #333;
+              padding: 12px 16px;
+              border-left: 3px solid #7d7d7d;
+              background-color:transparent ;
+              outline: none !important;
+              cursor: pointer;
           }
+          .dropdown-item:active{
+            color:#333;
+            background-color:transparent ;
+          }
+
       `}
       </style>
     </>

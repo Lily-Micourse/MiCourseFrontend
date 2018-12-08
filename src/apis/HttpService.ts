@@ -22,15 +22,12 @@ export interface HttpError {
   data?: any;
 }
 
-export class HttpService {
-  private axiosInstance: AxiosInstance;
+const axiosInstance = axios.create({ baseURL: "" });
 
-  constructor() {
-    this.axiosInstance = axios.create({ baseURL: "" });
-  }
+export class HttpService {
 
   setToken(token: string) {
-    this.axiosInstance.defaults.headers.common.Authorization = `Bearer ${token}`;
+    axiosInstance.defaults.headers.common.Authorization = `Bearer ${token}`;
   }
 
   /**
@@ -41,7 +38,7 @@ export class HttpService {
    */
   async fetch<T>(fetchInfo: FetchInfo): Promise<T> {
     try {
-      const response = await this.axiosInstance({
+      const response = await axiosInstance({
         method: fetchInfo.method,
         url: fetchInfo.path,
         params: fetchInfo.params,

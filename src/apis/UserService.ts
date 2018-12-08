@@ -9,10 +9,14 @@ export class UserService extends HttpService {
 
   async login(username: string, password: string): Promise<LoginResponse> {
 
-    return this.fetch<LoginResponse>({
+    const res = await this.fetch<LoginResponse>({
       method: HttpMethod.GET,
       params: { username, password },
       path: "/user",
     });
+    if (res.token) {
+      this.setToken(res.token);
+    }
+    return res;
   }
 }

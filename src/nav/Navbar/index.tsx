@@ -35,7 +35,7 @@ export default class Navbar extends React.Component<Props, State> {
   render() {
     return (
       <>
-        <BSNavbar expand="md">
+        <BSNavbar expand="md" fixed="top">
           <Container>
             <Row>
               <Col xs={2} sm={2} md={3}>
@@ -73,10 +73,6 @@ export default class Navbar extends React.Component<Props, State> {
           .row {
             width: 100%;
             margin: 0;
-          }
-
-          .pull-right {
-            float: right;
           }
 
           .navbar {
@@ -120,15 +116,6 @@ export default class Navbar extends React.Component<Props, State> {
           }
 
 
-        `}
-        </style>
-        { /*language=CSS*/ }
-        <style jsx global>{`
-            .center-vertical{
-              position: relative;
-              top: 50%;
-              transform: translateY(-50%);
-            }
         `}
         </style>
       </>
