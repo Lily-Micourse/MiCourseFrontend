@@ -3,7 +3,7 @@ import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import Link from "next/link";
 import { UserService } from "@/apis/UserService";
 import { UserStore } from "@/stores/UserStore";
-import { connect, ConnectedProps } from "@/utils/ConnectHOC";
+import { connect, ConnectedProps } from "@/stores/connect";
 import Router from "next/router";
 
 interface State {
@@ -15,9 +15,7 @@ interface Props extends ConnectedProps {
 
 }
 
-@connect({
-  stores: [UserStore],
-})
+@connect(UserStore)
 export default class LoginForm extends React.Component<Props, State> {
   state = {
     username: "",
@@ -36,17 +34,9 @@ export default class LoginForm extends React.Component<Props, State> {
     });
   }
 
-  login = () => {
-    const userService = this.props.useService(UserService);
-    const userStore = this.props.useStore(UserStore);
-    userService.login(this.state.username, this.state.password).then((res) => {
-      if (res.token) {
-        // userStore.setState()
-        Router.push("/");
-      } else {
-
-      }
-    }).catch();
+  login = async () => {
+    const userStore = this.props.useStore!(UserStore);
+    await userStore.login(this.state.username, this.state.password);
   }
 
   render() {

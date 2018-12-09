@@ -3,6 +3,7 @@ import Navbar from "@/nav/Navbar";
 import Head from "next/head";
 
 import "bootstrap/dist/css/bootstrap.min.css";
+import Footer from "@/footer/Footer";
 
 interface Props {
   children: React.ReactNode;
@@ -19,6 +20,7 @@ export default function IndexLayout(props: Props) {
         <div className="content">
           {props.children}
         </div>
+        <Footer/>
       </div>
       { /*language=CSS*/ }
       <style jsx>{`

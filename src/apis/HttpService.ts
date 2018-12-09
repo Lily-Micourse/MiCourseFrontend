@@ -26,8 +26,8 @@ const axiosInstance = axios.create({ baseURL: "" });
 
 export class HttpService {
 
-  setToken(token: string) {
-    axiosInstance.defaults.headers.common.Authorization = `Bearer ${token}`;
+  protected get axios() {
+    return axiosInstance;
   }
 
   /**
@@ -68,4 +68,8 @@ export class HttpService {
       }
     }
   }
+}
+
+export interface HttpServiceType {
+  new(...args): HttpService;
 }

@@ -1,13 +1,19 @@
-import * as React from "react";
-import { HttpService } from "@/apis/HttpService";
-import serviceConfig, { ServiceConfig } from "@/apis/serviceConfig";
+import { HttpService, HttpServiceType } from "@/apis/HttpService";
+import { UserService } from "@/apis/UserService";
+import UserServiceMock from "@/apis/mock/UserServiceMock";
 
-export interface HttpServiceType<T extends HttpService = HttpService> {
-  new(...args: any[]): T;
-}
+export const USE_MOCK = false;
 
-export const ApiContext = React.createContext(serviceConfig as ServiceConfig);
+const services = [
+  [UserService, USE_MOCK ? UserServiceMock : UserService],
+];
 
-export function useApiService<ST extends HttpServiceType>(service: ST): InstanceType<ST> | undefined {
-  return serviceConfig.get(service) as InstanceType<ST>;
+const serviceConfig = new Map<HttpServiceType, HttpService>();
+
+services.forEach((item) => {
+  serviceConfig.set(item[0], new item[1]());
+});
+
+export function useApiService<T extends HttpServiceType>(serviceType: T) {
+  return serviceConfig.get(serviceType)! as InstanceType<T>;
 }

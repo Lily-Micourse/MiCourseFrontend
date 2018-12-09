@@ -5,8 +5,6 @@ import { RootStore } from "@/stores/RootStore";
 
 import UNSTATED from "unstated-debug";
 
-import ApiProvider from "@/apis/ApiProvider";
-import serviceConfig from "@/apis/serviceConfig";
 import storeConfig, { IRootStore } from "@/stores/storeConfig";
 import StoreProvider from "@/stores/StoreProvider";
 
@@ -53,11 +51,9 @@ export default class MyApp extends App<IOwnProps> {
     const { Component, pageProps } = this.props;
     return (
       <Container>
-        <ApiProvider services={serviceConfig}>
           <StoreProvider rootStore={this.store}>
             <Component {...pageProps} />
           </StoreProvider>
-        </ApiProvider>
       </Container>
     );
   }

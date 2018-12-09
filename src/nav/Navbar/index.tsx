@@ -9,7 +9,7 @@ import { IoIosMenu } from "react-icons/io";
 import { IconContext } from "react-icons";
 import NavMenu from "@/nav/Navbar/NavMenu";
 
-interface Props extends Partial<WithRouterProps> {
+interface Props extends WithRouterProps {
 
 }
 
@@ -17,10 +17,7 @@ interface State {
   open: boolean;
 }
 
-const AnyWithRouter = withRouter as any;
-
-@AnyWithRouter
-export default class Navbar extends React.Component<Props, State> {
+class Navbar extends React.Component<Props, State> {
 
   state = {
     open: false,
@@ -125,3 +122,5 @@ export default class Navbar extends React.Component<Props, State> {
   }
 
 }
+
+export default withRouter(Navbar);

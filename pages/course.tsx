@@ -1,7 +1,7 @@
 import * as React from "react";
 import IndexLayout from "@/layout/IndexLayout";
-import { useApiService } from "@/apis";
 import { UserService } from "@/apis/UserService";
+import { useApiService } from "@/apis";
 
 export default class CoursePage extends React.Component {
 

@@ -19,4 +19,8 @@ export class UserService extends HttpService {
     }
     return res;
   }
+
+  setToken(token: string) {
+    this.axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  }
 }
