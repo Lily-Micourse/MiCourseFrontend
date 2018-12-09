@@ -2,12 +2,14 @@ import * as React from "react";
 import { withRouter, WithRouterProps } from "next/router";
 import { Col, Container, Navbar as BSNavbar, Row, Dropdown, DropdownToggle } from "reactstrap";
 import Logo from "./Logo";
-import SearchBar from "@/nav/Navbar/SearchBar";
+import SearchBar from "@/nav/navbar/SearchBar";
 import MediaQuery from "react-responsive";
 import breakpoints from "@/utils/breakpoints";
 import { IoIosMenu } from "react-icons/io";
 import { IconContext } from "react-icons";
-import NavMenu from "@/nav/Navbar/NavMenu";
+import NavbarExpandedMenu from "@/nav/navbarmenu/NavbarExpandedMenu";
+import NavbarDropdownMenu from "@/nav/navbarmenu/NavbarDropdownMenu";
+import NavbarMenu from "@/nav/navbarmenu";
 
 interface Props extends WithRouterProps {
 
@@ -33,6 +35,7 @@ class Navbar extends React.Component<Props, State> {
     return (
       <>
         <BSNavbar expand="md" fixed="top">
+
           <Container>
             <Row>
               <Col xs={2} sm={2} md={3}>
@@ -43,7 +46,7 @@ class Navbar extends React.Component<Props, State> {
               </Col>
               <Col xs={2} sm={2} md={4}>
                 <MediaQuery minWidth={breakpoints.md}>
-                  <NavMenu path={this.props.router!.pathname} type="navbarMenu"/>
+                  <NavbarMenu type="expanded"/>
                 </MediaQuery>
                 <MediaQuery maxWidth={breakpoints.smMax}>
                   <Dropdown isOpen={this.state.open} toggle={this.toggle} direction="down" className="pull-right  center-vertical">
@@ -57,7 +60,7 @@ class Navbar extends React.Component<Props, State> {
                         <IoIosMenu className="hamburger"/>
                       </IconContext.Provider>
                     </DropdownToggle>
-                    <NavMenu path={this.props.router!.pathname} type="dropMenu"/>
+                    <NavbarMenu type="dropdown"/>
                   </Dropdown>
                 </MediaQuery>
 
@@ -90,12 +93,12 @@ class Navbar extends React.Component<Props, State> {
           @media (min-width: 768px)
           and (max-width: 992px) {
             .navbar-expand-md .navbar-nav .nav-link {
-              padding-right: 5px;
-              padding-left:  5px;
+              padding-right: 0px;
+              padding-left:  2px;
             }
           }
 
-          @media (max-width: 768px) {
+          @media (max-width: 992px) {
             .container {
               max-width: none;
             }

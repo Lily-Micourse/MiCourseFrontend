@@ -1,5 +1,5 @@
 import * as React from "react";
-import Navbar from "@/nav/Navbar";
+import Navbar from "@/nav/navbar";
 import Head from "next/head";
 
 import "bootstrap/dist/css/bootstrap.min.css";

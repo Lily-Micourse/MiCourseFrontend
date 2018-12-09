@@ -37,6 +37,7 @@ export default class LoginForm extends React.Component<Props, State> {
   login = async () => {
     const userStore = this.props.useStore!(UserStore);
     await userStore.login(this.state.username, this.state.password);
+    Router.push("/");
   }
 
   render() {

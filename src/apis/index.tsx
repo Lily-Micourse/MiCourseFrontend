@@ -2,7 +2,7 @@ import { HttpService, HttpServiceType } from "@/apis/HttpService";
 import { UserService } from "@/apis/UserService";
 import UserServiceMock from "@/apis/mock/UserServiceMock";
 
-export const USE_MOCK = false;
+export const USE_MOCK = true;
 
 const services = [
   [UserService, USE_MOCK ? UserServiceMock : UserService],

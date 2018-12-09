@@ -40,7 +40,6 @@ export default class Login extends React.Component<State> {
     });
   }
 
-
   render() {
     const activeLink = {
       borderBottom: "2px white solid",
@@ -64,12 +63,12 @@ export default class Login extends React.Component<State> {
                   <Nav>
                     <NavItem>
                       <NavLink onClick={() => { this.toggle(0); }}>
-                        <div className="nav-tab" style={this.state.activeTab === 0 ? activeLink : undefined}>登录米课</div>
+                        <div className="nav-tab" style={this.state.activeTab === 0 ? activeLink : {}}>登录米课</div>
                       </NavLink>
                     </NavItem>
                     <NavItem>
                       <NavLink onClick={() => { this.toggle(1); }}>
-                        <div className="nav-tab" style={this.state.activeTab === 1 ? activeLink : undefined}>注册米课</div>
+                        <div className="nav-tab" style={this.state.activeTab === 1 ? activeLink : {}}>注册米课</div>
                       </NavLink>
                     </NavItem>
                   </Nav>
