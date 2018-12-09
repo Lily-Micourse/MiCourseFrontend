@@ -1,7 +1,8 @@
 import { Container } from "unstated";
 import { useApiService } from "@/apis";
 import { UserService } from "@/apis/UserService";
-import { isClient } from "@/utils/isClient";
+import { isBrowser } from "@/utils/isBrowser";
+import Store from "@/stores/Store";
 
 export interface IUserStore {
   username: string;
@@ -9,14 +10,13 @@ export interface IUserStore {
 
 const LOGIN_LOCALSTORAGE_KEY = "MICOURSE_USER";
 
-export class UserStore extends Container<IUserStore> {
+export class UserStore extends Store<IUserStore> {
 
   constructor() {
     super();
     this.state = {
       username: "",
     };
-    this.restoreLoginState();
   }
 
   get loggedIn() {
@@ -24,7 +24,7 @@ export class UserStore extends Container<IUserStore> {
   }
 
   restoreLoginState() {
-    if (isClient()) {
+    if (isBrowser()) {
       const data = localStorage.getItem(LOGIN_LOCALSTORAGE_KEY);
       if (data) {
         const { token, ...rest } = JSON.parse(data);
@@ -34,6 +34,10 @@ export class UserStore extends Container<IUserStore> {
     }
   }
 
+  afterHydration() {
+    this.restoreLoginState();
+  }
+
   async login(username: string, password: string, remember: boolean = true) {
     const userService = useApiService(UserService)!;
     const result = await userService.login(username, password);
@@ -41,10 +45,10 @@ export class UserStore extends Container<IUserStore> {
       // something bad happened
     } else {
       userService.setToken(result.token!);
-      this.setState({
+      await this.setState({
         username,
       });
-      if (remember && isClient()) {
+      if (remember && isBrowser()) {
         localStorage.setItem(
           LOGIN_LOCALSTORAGE_KEY,
           JSON.stringify({
@@ -58,6 +62,9 @@ export class UserStore extends Container<IUserStore> {
   logout() {
     this.setState({ username: "" });
     useApiService(UserService)!.setToken("");
+    if (isBrowser()) {
+      localStorage.removeItem(LOGIN_LOCALSTORAGE_KEY);
+    }
   }
 
 }

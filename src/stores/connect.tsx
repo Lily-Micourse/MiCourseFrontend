@@ -1,23 +1,22 @@
-import { ContainerType, Subscribe } from "unstated";
+import { Subscribe } from "unstated";
 import * as React from "react";
 import { HttpServiceType } from "@/apis/HttpService";
 import { useApiService } from "@/apis";
+import { StoreType } from "@/stores/Store";
 
 export interface ConnectedProps {
-  useStore?: <CT extends ContainerType<any>>(containerType: CT) => InstanceType<CT>;
-  useService?: <ST extends HttpServiceType>(serviceType: ST) => InstanceType<ST>;
+  useStore?: <CT extends StoreType<any>>(containerType: CT) => InstanceType<CT>;
 }
 
-export function connect<CT extends Array<ContainerType<any>> = []>(...stores: Array<ContainerType<any>>) {
+export function connect<CT extends Array<StoreType<any>> = []>(...stores: Array<StoreType<any>>) {
   return (WrappedComponent) => ((props) => {
     return (
       <Subscribe to={stores}>
         {(...injectedStores) => {
-          const useStore = (containerType: ContainerType<any>) => injectedStores.find((x) => x instanceof containerType);
+          const useStore = (containerType: StoreType<any>) => injectedStores.find((x) => x instanceof containerType);
 
           return (
             <WrappedComponent
-              useService={useApiService}
               useStore={useStore}
               {...props}
             />

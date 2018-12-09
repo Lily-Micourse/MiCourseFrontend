@@ -10,7 +10,7 @@ interface Props extends ConnectedProps {
   type: "expanded" | "dropdown";
 }
 
-const NavbarMenu = (props: Props) => {
+export default connect(UserStore)((props: Props) => {
 
   const userStore = props.useStore!(UserStore);
 
@@ -29,6 +29,4 @@ const NavbarMenu = (props: Props) => {
   } else {
     return (<NavbarDropdownMenu withinLoginLinks={[...basicLinks, ...extendedLinksAfterLogin, logoutLink]} withoutLoginLinks={withoutLoginLinks} loggedIn={userStore.loggedIn}/>);
   }
-};
-
-export default connect(UserStore)(NavbarMenu);
+});

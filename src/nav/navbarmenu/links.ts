@@ -8,7 +8,7 @@ export const extendedLinksAfterLogin = [
   { href: "/messages", title: "消息盒子" },
   { href: "/settings", title: "资料设置" }];
 
-export const withoutLoginLinks = [...basicLinks, { href: "/login", title: "登陆" }];
+export const withoutLoginLinks = [...basicLinks, { href: "/login", title: "登录" }];
 
 export interface Link {
   href?: string;

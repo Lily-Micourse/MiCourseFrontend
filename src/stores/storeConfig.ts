@@ -1,15 +1,12 @@
-import { Container, ContainerType } from "~/node_modules/unstated";
-import { RootStore } from "@/stores/RootStore";
 import { IUserStore, UserStore } from "@/stores/UserStore";
+import { StoreType } from "@/stores/Store";
 
 export interface IRootStore {
   userStore: IUserStore;
 }
 
-export type StoreConfig = ContainerType<any>;
-
-const storeConfig = [
+const stores = [
   UserStore,
-] as StoreConfig[];
+] as StoreType<any>[];
 
-export default storeConfig;
+export default stores;
