@@ -24,10 +24,28 @@ import css from "styled-jsx/css";
 import Link from "next/link";
 import LoginForm from "@/pages/login/LoginForm";
 import SignUpForm from "@/pages/login/SignUpForm";
+import styled from "styled-components";
 
 interface State {
   activeTab: number;
 }
+
+const Wrapper = styled.div`
+  padding: 5% 0;
+  background-image: url(/static/img/homeImg.png);
+  background-size: cover;
+`;
+
+const NavTab = styled.div`
+  color: white;
+  cursor: pointer;
+  margin: 0 0 1rem -1rem;
+  font-size: 16px;
+`;
+
+const InfoWrapper = styled.div`
+  text-align: center;
+`;
 
 export default class Login extends React.Component<State> {
 
@@ -47,15 +65,15 @@ export default class Login extends React.Component<State> {
     };
     return (
       <IndexLayout>
-        <div className="wrapper">
+        <Wrapper>
           <Container>
             <Row>
               <Col sm={6} md={8}>
                 <MediaQuery minWidth={breakpoints.sm}>
-                  <div className="wrapper-info">
+                  <InfoWrapper>
                     <img src={MiLogo}/>
                     <img src={MiTitle}/>
-                  </div>
+                  </InfoWrapper>
                 </MediaQuery>
               </Col>
               <Col xs={12} sm={6} md={4}>
@@ -63,12 +81,12 @@ export default class Login extends React.Component<State> {
                   <Nav>
                     <NavItem>
                       <NavLink onClick={() => { this.toggle(0); }}>
-                        <div className="nav-tab" style={this.state.activeTab === 0 ? activeLink : {}}>登录米课</div>
+                        <NavTab style={this.state.activeTab === 0 ? activeLink : {}}>登录米课</NavTab>
                       </NavLink>
                     </NavItem>
                     <NavItem>
                       <NavLink onClick={() => { this.toggle(1); }}>
-                        <div className="nav-tab" style={this.state.activeTab === 1 ? activeLink : {}}>注册米课</div>
+                        <NavTab style={this.state.activeTab === 1 ? activeLink : {}}>注册米课</NavTab>
                       </NavLink>
                     </NavItem>
                   </Nav>
@@ -89,32 +107,7 @@ export default class Login extends React.Component<State> {
               </Col>
             </Row>
           </Container>
-        </div>
-        {/*language=CSS*/}
-        <style jsx>{`
-          .wrapper {
-            padding: 5% 0;
-            background-image: url(/static/img/homeImg.png);
-            background-size: cover;
-          }
-
-          .nav-tab {
-            color: white;
-            cursor: pointer;
-            margin: 0 0 1rem -1rem;
-            font-size: 16px;
-          }
-
-          .wrapper-info {
-            text-align: center;
-          }
-        `}
-        </style>
-        {/*language=CSS*/}
-        <style jsx global>{`
-
-        `}
-        </style>
+        </Wrapper>
       </IndexLayout>
     );
   }

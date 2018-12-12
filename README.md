@@ -6,8 +6,9 @@
 
 - Next.js
 - React
-- mobx, mobx-state-tree
+- unstated, moving to React's context once hook is ready
 - TypeScript
 - Jest + enzyme
 - Axios
 - Continuous Integration & Delivery
+- tslint - unified code style

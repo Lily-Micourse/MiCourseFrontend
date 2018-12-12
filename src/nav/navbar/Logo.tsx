@@ -5,16 +5,23 @@ import S from "~/static/img/Brand-S.png";
 import M from "~/static/img/Brand-M.png";
 import L from "~/static/img/Brand.png";
 import Router from "next/router";
+import styled from "styled-components";
 
 function LogoImg({ brand, width, height }) {
   return <img src={brand} width={width} height={height} alt="logo" onClick={() => Router.push("/")} style={{ cursor: "pointer" }}/>;
 }
 
+const CenterVertialDiv = styled.div`
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+`;
+
 export default function Logo() {
 
   return (
     <>
-      <div className="center-vertical">
+      <CenterVertialDiv>
         <MediaQuery maxWidth={breakpoints.smMax}>
           <LogoImg brand={S} width={38} height={40}/>
         </MediaQuery>
@@ -24,17 +31,7 @@ export default function Logo() {
         <MediaQuery minWidth={breakpoints.lg}>
           <LogoImg brand={L} width={186} height={40}/>
         </MediaQuery>
-      </div>
-      { /*language=CSS*/ }
-      <style jsx>{`
-            .center-vertical{
-              position: relative;
-              top: 50%;
-              transform: translateY(-50%);
-            }
-        `}
-      </style>
-
+      </CenterVertialDiv>
     </>
 
   );
