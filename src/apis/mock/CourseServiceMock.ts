@@ -1,5 +1,6 @@
 import { CourseService } from "@/apis/CourseService";
 import { CourseDetail } from "@/models/course/CourseDetail";
+import { CourseListItem } from "@/models/course/Course";
 
 export class CourseServiceMock extends CourseService {
 
@@ -38,5 +39,55 @@ export class CourseServiceMock extends CourseService {
         moreThanFive: 0,
       },
     };
+  }
+
+  async getCoursesByType(type: "hot" | "recommand" | "latest", page: number, pageSize: number = 15): Promise<CourseListItem[]> {
+    return [{
+      id: "001",
+      name: "第一个课",
+      cover: "",
+      rate: 3.9,
+      credit: 2,
+      department: "软件学院",
+      category: "通识课",
+      commentNum: 10,
+    }];
+  }
+
+  async getCourseByQuery(queryType: "string" | "credit" | "department" | "category",
+                         query: string, page: number, pageSize: number = 15): Promise<CourseListItem[]> {
+    if (query === "1") {
+      return [{
+        id: "001",
+        name: "最热的课",
+        cover: "",
+        rate: 3.9,
+        credit: 2,
+        department: "软件学院",
+        category: "通识课",
+        commentNum: 10,
+      }];
+    } else {
+      return [{
+        id: "001",
+        name: "最热的课",
+        cover: "",
+        rate: 3.9,
+        credit: 2,
+        department: "软件学院",
+        category: "通识课",
+        commentNum: 10,
+      },
+      {
+        id: "002",
+        name: "最热的课2",
+        cover: "",
+        rate: 3.9,
+        credit: 2,
+        department: "软件学院",
+        category: "通识课",
+        commentNum: 10,
+      }];
+    }
   }
 }

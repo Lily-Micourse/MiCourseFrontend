@@ -67,4 +67,8 @@ export class UserStore extends Store<IUserStore> {
     }
   }
 
+  async signUp(username: string, password: string) {
+    return useApiService(UserService)!.signUp(username, password);
+  }
+
 }
