@@ -22,8 +22,8 @@ import MediaQuery from "react-responsive";
 import breakpoints from "@/utils/breakpoints";
 import css from "styled-jsx/css";
 import Link from "next/link";
-import LoginForm from "@/components/login/LoginForm";
-import SignUpForm from "@/components/login/SignUpForm";
+import LoginForm from "@/pages/login/LoginForm";
+import SignUpForm from "@/pages/login/SignUpForm";
 
 interface State {
   activeTab: number;

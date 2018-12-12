@@ -1,9 +1,9 @@
 import * as React from "react";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import Link from "next/link";
-import { UserService } from "@/apis/UserService";
-import { UserStore } from "@/stores/UserStore";
-import { connect, ConnectedProps } from "@/stores/connect";
+import { UserService } from "../../apis/UserService";
+import { UserStore } from "../../stores/UserStore";
+import { connect, ConnectedProps } from "../../stores/connect";
 import Router from "next/router";
 
 interface State {

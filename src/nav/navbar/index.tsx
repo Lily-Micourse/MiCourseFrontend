@@ -69,55 +69,55 @@ class Navbar extends React.Component<Props, State> {
           </Container>
         </BSNavbar>
         {/*language=CSS*/}
-        <style jsx>{`
-          .row {
-            width: 100%;
-            margin: 0;
-          }
+        {/*<style jsx>{`*/}
+          {/*.row {*/}
+            {/*width: 100%;*/}
+            {/*margin: 0;*/}
+          {/*}*/}
 
-          .navbar {
-            background-color: #88c5e1;
-            border-bottom: 5px solid #54abd4;
-            padding: 12px 0;
-            color: white;
-          }
+          {/*.navbar {*/}
+            {/*background-color: #88c5e1;*/}
+            {/*border-bottom: 5px solid #54abd4;*/}
+            {/*padding: 12px 0;*/}
+            {/*color: white;*/}
+          {/*}*/}
 
-          .navbar-dark .navbar-nav .nav-link {
-            color: white;
-          }
+          {/*.navbar-dark .navbar-nav .nav-link {*/}
+            {/*color: white;*/}
+          {/*}*/}
 
-          .navbar-dark .navbar-toggler {
-            color: white;
-          }
+          {/*.navbar-dark .navbar-toggler {*/}
+            {/*color: white;*/}
+          {/*}*/}
 
-          @media (min-width: 768px)
-          and (max-width: 992px) {
-            .navbar-expand-md .navbar-nav .nav-link {
-              padding-right: 0px;
-              padding-left:  2px;
-            }
-          }
+          {/*@media (min-width: 768px)*/}
+          {/*and (max-width: 992px) {*/}
+            {/*.navbar-expand-md .navbar-nav .nav-link {*/}
+              {/*padding-right: 0px;*/}
+              {/*padding-left:  2px;*/}
+            {/*}*/}
+          {/*}*/}
 
-          @media (max-width: 992px) {
-            .container {
-              max-width: none;
-            }
-          }
+          {/*@media (max-width: 992px) {*/}
+            {/*.container {*/}
+              {/*max-width: none;*/}
+            {/*}*/}
+          {/*}*/}
+        
+          {/*.hamburger {*/}
+            {/*border: white 1px solid;*/}
+            {/*cursor: pointer;*/}
+          {/*}*/}
 
-          .hamburger {
-            border: white 1px solid;
-            cursor: pointer;
-          }
-
-          .middle {
-            float: none;
-            display: inline-block;
-            vertical-align: middle;
-          }
+          {/*.middle {*/}
+            {/*float: none;*/}
+            {/*display: inline-block;*/}
+            {/*vertical-align: middle;*/}
+          {/*}*/}
 
 
-        `}
-        </style>
+        {/*`}*/}
+        {/*</style>*/}
       </>
 
     );
