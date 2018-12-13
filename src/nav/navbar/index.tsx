@@ -1,14 +1,12 @@
 import * as React from "react";
 import { withRouter, WithRouterProps } from "next/router";
-import { Col, Container, Navbar as BSNavbar, Row, Dropdown, DropdownToggle } from "reactstrap";
+import { Col, Container, Dropdown, DropdownToggle, Navbar as BSNavbar, Row } from "reactstrap";
 import Logo from "./Logo";
 import SearchBar from "@/nav/navbar/SearchBar";
 import MediaQuery from "react-responsive";
 import breakpoints from "@/utils/breakpoints";
 import { IoIosMenu } from "react-icons/io";
 import { IconContext } from "react-icons";
-import NavbarExpandedMenu from "@/nav/navbarmenu/NavbarExpandedMenu";
-import NavbarDropdownMenu from "@/nav/navbarmenu/NavbarDropdownMenu";
 import NavbarMenu from "@/nav/navbarmenu";
 import styled from "styled-components";
 
@@ -27,40 +25,40 @@ const StyledNavbar = styled(BSNavbar)`
   color: white;
 
   .row {
-  width: 100%;
-  margin: 0;
+    width: 100%;
+    margin: 0;
   }
 
   .navbar-dark .navbar-nav .nav-link {
-  color: white;
+    color: white;
   }
 
   .navbar-dark .navbar-toggler {
-  color: white;
+    color: white;
   }
 
   @media (min-width: 768px) and (max-width: 992px) {
-  .navbar-expand-md .navbar-nav .nav-link {
-    padding-right: 0px;
-    padding-left:  2px;
-  }
+    .navbar-expand-md .navbar-nav .nav-link {
+      padding-right: 0px;
+      padding-left:  2px;
+    }
   }
 
   @media (max-width: 992px) {
-  .container {
-    max-width: none;
-  }
+    .container {
+      max-width: none;
+    }
   }
 
   .hamburger {
-  border: white 1px solid;
-  cursor: pointer;
+    border: white 1px solid;
+    cursor: pointer;
   }
 
   .middle {
-  float: none;
-  display: inline-block;
-  vertical-align: middle;
+    float: none;
+    display: inline-block;
+    vertical-align: middle;
   }
 `;
 
@@ -92,7 +90,7 @@ class Navbar extends React.Component<Props, State> {
                 <NavbarMenu type="expanded" />
               </MediaQuery>
               <MediaQuery maxWidth={breakpoints.smMax}>
-                <Dropdown isOpen={this.state.open} toggle={this.toggle} direction="down" className="pull-right  center-vertical">
+                <Dropdown isOpen={this.state.open} toggle={this.toggle} direction="down" className="pull-right center-vertical">
                   <DropdownToggle
                     tag="span"
                     onClick={this.toggle}

@@ -1,4 +1,3 @@
-import { Provider as UnstatedProvider } from "unstated";
 import App, { Container } from "next/app";
 import * as React from "react";
 import { RootStore } from "@/stores/RootStore";

@@ -1,13 +1,13 @@
 import * as React from "react";
 import IndexLayout from "@/layout/IndexLayout";
-import { UserService } from "@/apis/UserService";
 import { useApiService } from "@/apis";
 import CourseDetailPage from "@/pages/coursedetail/CourseDetailPage";
-import CourseList, { CourseListQueryType } from "@/pages/courselist/CourseList";
+import CourseList from "@/pages/courselist/CourseList";
 import { CourseService } from "@/apis/CourseService";
 import { CourseListItem } from "@/models/course/Course";
+import { CourseListQuery, CourseQueryType, CourseType } from "@/models/course/CourseQuery";
 
-interface SearchQuery extends CourseListQueryType {
+interface SearchQuery extends CourseListQuery {
   id?: string;
 }
 
@@ -15,15 +15,15 @@ type Props = { id: string } | { list: CourseListItem[] };
 
 export default class CoursePage extends React.Component<Props> {
 
-  static async getInitialProps({ query: { id, page = 0, query = "", queryType = "string" } }: { query: SearchQuery }) {
+  static async getInitialProps({ query: { id, page = 0, query = "", queryType = CourseQueryType.STRING } }: { query: SearchQuery }) {
 
     if (!id) {
       const courseService = useApiService(CourseService);
       console.log("here");
       console.log(query);
       const list = query
-        ? await courseService.getCourseByQuery(queryType, query, page)
-        : await courseService.getCoursesByType("hot", page);
+        ? await courseService.getCoursesByQuery(queryType, query, page)
+        : await courseService.getCoursesByType(CourseType.HOT, page);
       return { list };
     }
     return { id };

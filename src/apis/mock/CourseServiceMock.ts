@@ -1,6 +1,6 @@
 import { CourseService } from "@/apis/CourseService";
-import { CourseDetail } from "@/models/course/CourseDetail";
 import { CourseListItem } from "@/models/course/Course";
+import { CourseQueryType, CourseType } from "@/models/course/CourseQuery";
 
 export class CourseServiceMock extends CourseService {
 
@@ -41,7 +41,7 @@ export class CourseServiceMock extends CourseService {
     };
   }
 
-  async getCoursesByType(type: "hot" | "recommand" | "latest", page: number, pageSize: number = 15): Promise<CourseListItem[]> {
+  async getCoursesByType(type: CourseType, page: number, pageSize: number = 15): Promise<CourseListItem[]> {
     return [{
       id: "001",
       name: "第一个课",
@@ -54,8 +54,8 @@ export class CourseServiceMock extends CourseService {
     }];
   }
 
-  async getCourseByQuery(queryType: "string" | "credit" | "department" | "category",
-                         query: string, page: number, pageSize: number = 15): Promise<CourseListItem[]> {
+  async getCoursesByQuery(queryType: CourseQueryType,
+                          query: string, page: number, pageSize: number = 15): Promise<CourseListItem[]> {
     if (query === "1") {
       return [{
         id: "001",

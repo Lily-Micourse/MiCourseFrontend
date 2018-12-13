@@ -1,16 +1,11 @@
 import React from "react";
 import Query from "@/apis/Query";
 import { CourseListItem } from "@/models/course/Course";
-
-export interface CourseListQueryType {
-  query?: string;
-  queryType?: "string" | "credit" | "department" | "category";
-  page?: number;
-}
+import { CourseListQuery } from "@/models/course/CourseQuery";
 
 interface Props {
   list: CourseListItem[];
-  query?: CourseListQueryType;
+  query?: CourseListQuery;
 }
 
 export default class CourseList extends React.Component<Props, {}> {

@@ -1,6 +1,5 @@
 import * as React from "react";
 import NavbarExpandedMenu from "@/nav/navbarmenu/NavbarExpandedMenu";
-import NavbarDropdownMenu from "@/nav/navbarmenu/NavbarDropdownMenu";
 import { connect, ConnectedProps } from "@/stores/connect";
 import { UserStore } from "@/stores/UserStore";
 import { basicLinks, extendedLinksAfterLogin, withoutLoginLinks } from "@/nav/navbarmenu/links";

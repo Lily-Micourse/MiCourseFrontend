@@ -866,10 +866,10 @@
     "@types/prop-types" "*"
     csstype "^2.2.0"
 
-"@types/react@^16.7.13":
-  version "16.7.13"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.7.13.tgz#d2369ae78377356d42fb54275d30218e84f2247a"
-  integrity sha512-WhqrQLAE9z65hfcvWqZfR6qUtIazFRyb8LXqHo8440R53dAQqNkt2OlVJ3FXwqOwAXXg4nfYxt0qgBvE18o5XA==
+"@types/react@^16.7.17":
+  version "16.7.17"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.7.17.tgz#3242e796a1ffbba4f49eae5915a67f4c079504e9"
+  integrity sha512-YcXcaoXaxo7A76mBCGlKlN2aZu3REQfF0DTrhiyXVJLA7PDdxVCr+wiQOrkVNn44D/zLlIyDSn3U918Ve0AaEA==
   dependencies:
     "@types/prop-types" "*"
     csstype "^2.2.0"
@@ -5825,17 +5825,17 @@ next-compose-plugins@^2.1.1:
   resolved "http://registry.npm.taobao.org/next-compose-plugins/download/next-compose-plugins-2.1.1.tgz#7da0a3ce0c8ce267b5cb4164d2fb6e4aaf61bf86"
   integrity sha1-faCjzgyM4me1y0Fk0vtuSq9hv4Y=
 
-next-optimized-images@^2.0.2:
-  version "2.0.2"
-  resolved "http://registry.npm.taobao.org/next-optimized-images/download/next-optimized-images-2.0.2.tgz#f501779129a7d2e92bda3344cefcd637736337c6"
-  integrity sha1-9QF3kSmn0ukr2jNEzvzWN3NjN8Y=
+next-optimized-images@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/next-optimized-images/-/next-optimized-images-2.1.0.tgz#6cfe7b8c0a31204c4f9bf196d586237c4b4ef68d"
+  integrity sha512-oOTtVdHfe8nYR88Vt3hn36/IlUkj96wOwbI6+GDYKDQIdi3s/yW1DBpN54GkwTGnd3/+zYmJur0FNZ1GFKsocQ==
   dependencies:
     chalk "^2.4.1"
     figures "^2.0.0"
     file-loader "^2.0.0"
     imagemin "^6.0.0"
     img-loader "^3.0.1"
-    raw-loader "^0.5.1"
+    raw-loader "^1.0.0"
     url-loader "^1.1.2"
 
 next@^7.0.2:
@@ -6881,10 +6881,13 @@ range-parser@^1.0.3, range-parser@~1.2.0:
   resolved "http://registry.npm.taobao.org/range-parser/download/range-parser-1.2.0.tgz#f49be6b487894ddc40dcc94a322f611092e00d5e"
   integrity sha1-9JvmtIeJTdxA3MlKMi9hEJLgDV4=
 
-raw-loader@^0.5.1:
-  version "0.5.1"
-  resolved "http://registry.npm.taobao.org/raw-loader/download/raw-loader-0.5.1.tgz#0c3d0beaed8a01c966d9787bf778281252a979aa"
-  integrity sha1-DD0L6u2KAclm2Xh793goElKpeao=
+raw-loader@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/raw-loader/-/raw-loader-1.0.0.tgz#3f9889e73dadbda9a424bce79809b4133ad46405"
+  integrity sha512-Uqy5AqELpytJTRxYT4fhltcKPj0TyaEpzJDcGz7DFJi+pQOOi3GjR/DOdxTkTsF+NzhnldIoG6TORaBlInUuqA==
+  dependencies:
+    loader-utils "^1.1.0"
+    schema-utils "^1.0.0"
 
 rc@^1.2.7:
   version "1.2.8"

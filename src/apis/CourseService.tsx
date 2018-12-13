@@ -2,11 +2,12 @@ import { HttpMethod, HttpService } from "@/apis/HttpService";
 import CourseDetailPage from "@/pages/coursedetail/CourseDetailPage";
 import { CourseDetail } from "@/models/course/CourseDetail";
 import { CourseListItem } from "@/models/course/Course";
+import { CourseQueryType, CourseType } from "@/models/course/CourseQuery";
 
 interface CourseListQuery {
-  type?: "hot" | "recommand" | "latest";
+  type?: CourseType;
   query?: string;
-  queryType?: "string" | "credit" | "department" | "category";
+  queryType?: CourseQueryType;
   page: number;
   pageSize: number;
 }
@@ -19,12 +20,15 @@ export class CourseService extends HttpService {
     });
   }
 
-  async getCoursesByType(type: "hot" | "recommand" | "latest", page: number, pageSize: number = 15): Promise<CourseListItem[]> {
+  async getCoursesByType(type: CourseType,
+                         page: number,
+                         pageSize: number = 15,
+                         ): Promise<CourseListItem[]> {
     return this.getCourses({ type, page, pageSize });
   }
 
-  async getCourseByQuery(queryType: "string" | "credit" | "department" | "category",
-                         query: string, page: number, pageSize: number = 15): Promise<CourseListItem[]> {
+  async getCoursesByQuery(queryType: CourseQueryType,
+                          query: string, page: number, pageSize: number = 15): Promise<CourseListItem[]> {
     return this.getCourses({ queryType, query, page, pageSize });
   }
 

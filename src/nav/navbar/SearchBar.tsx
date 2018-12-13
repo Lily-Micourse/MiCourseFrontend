@@ -1,8 +1,6 @@
 import * as React from "react";
-import { Form, FormGroup, Input, Label } from "reactstrap";
+import { Form, FormGroup, Input } from "reactstrap";
 import Router from "next/router";
-import { CourseListQueryType } from "@/pages/courselist/CourseList";
-import { string } from "~/node_modules/@types/prop-types";
 
 interface Props {
 }
@@ -13,7 +11,7 @@ interface State {
 
 export default class SearchBar extends React.Component<Props, State> {
 
-  state = { keyword: "" }
+  state = { keyword: "" };
 
   handleKeywordChange = (e) => {
     this.setState({ keyword: e.target.value });
