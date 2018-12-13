@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import breakpoints from "@/utils/breakpoints";
 
 const GlobalStyle = createGlobalStyle`
   .center-vertical {
@@ -37,6 +38,12 @@ const GlobalStyle = createGlobalStyle`
     box-shadow: 0 .4rem 0 #54abd4, 0 .1rem 0 rgba(255, 255, 255, .5) inset;
     background-color: #88c5e1;
 
+  }
+  
+  @media (min-width: ${breakpoints.sm}) and (max-width: ${breakpoints.smMax}) {
+    .container {
+      max-width: initial;
+    }
   }
   
 `;

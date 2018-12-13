@@ -1,12 +1,4 @@
-export interface CourseDetail {
-  id: string;
-  name: string;
-  rate: number;
-  type: string;
-  credit: number;
-  department: string;
-  cover: string;
-  hasFeedback: boolean;
+export interface CourseIndexes {
   pressureIndexes: {
     low: number;
     moderate: number;
@@ -31,4 +23,16 @@ export interface CourseDetail {
     lessThanFive: number;
     moreThanFive: number;
   };
+}
+
+export interface CourseDetail extends CourseIndexes {
+  id: string;
+  name: string;
+  description: string;
+  rate: number;
+  type: string;
+  credit: number;
+  department: string;
+  cover: string;
+  hasFeedback: boolean;
 }

@@ -8,6 +8,7 @@ export class CourseServiceMock extends CourseService {
     return {
       id: "1",
       name: "测试课程",
+      description: "哈哈哈",
       rate: 4.5,
       type: "选修课",
       credit: 3,

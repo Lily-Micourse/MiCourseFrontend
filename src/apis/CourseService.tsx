@@ -1,5 +1,4 @@
 import { HttpMethod, HttpService } from "@/apis/HttpService";
-import CourseDetailPage from "@/pages/coursedetail/CourseDetailPage";
 import { CourseDetail } from "@/models/course/CourseDetail";
 import { CourseListItem } from "@/models/course/Course";
 import { CourseQueryType, CourseType } from "@/models/course/CourseQuery";

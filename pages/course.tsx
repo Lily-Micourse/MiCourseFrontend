@@ -33,12 +33,10 @@ export default class CoursePage extends React.Component<Props> {
   render() {
     return (
       <IndexLayout>
-        <LimitedWidthDiv>
         {"id" in this.props
           ? <CourseDetailPage id={this.props.id}/>
           : <CourseList list={this.props.list}/>
         }
-        </LimitedWidthDiv>
       </IndexLayout>
     );
   }
