@@ -2,7 +2,7 @@ import * as React from "react";
 import IndexLayout from "@/layout/IndexLayout";
 import MiLogo from "~/static/img/MiLogo.png";
 import MiTitle from "~/static/img/miTitle.png";
-import { Col, Container, Fade, Nav, NavItem, NavLink, Row, TabContent, TabPane, } from "reactstrap";
+import { Col, Container, Fade, Nav, NavItem, NavLink, Row, TabContent, TabPane } from "reactstrap";
 import MediaQuery from "react-responsive";
 import breakpoints from "@/utils/breakpoints";
 import LoginForm from "@/pages/login/LoginForm";
@@ -17,7 +17,8 @@ const Wrapper = styled.div`
   padding: 5% 0;
   background-image: url(/static/img/homeImg.png);
   background-size: cover;
-  
+  height: 325px;
+
 `;
 
 const NavTab = styled.div`
@@ -25,8 +26,9 @@ const NavTab = styled.div`
   cursor: pointer;
   //margin: 0 0 1rem -1rem;
   font-size: 16px;
-  
-  ${({ active }) => active 
+
+
+  ${({ active }) => active
   ? `
       border-bottom: 2px white solid;
       padding-bottom: 4px

@@ -5,21 +5,25 @@ import { UserService } from "../../apis/UserService";
 import { UserStore } from "../../stores/UserStore";
 import { connect, ConnectedProps } from "../../stores/connect";
 import Router from "next/router";
+import { withAlert, WithAlertProps } from "@/components/alert";
 
 interface State {
   username: string;
   password: string;
+  loggingIn: boolean;
 }
 
-interface Props extends ConnectedProps {
+interface Props extends ConnectedProps, WithAlertProps {
 
 }
 
+@withAlert
 @connect(UserStore)
 export default class LoginForm extends React.Component<Props, State> {
   state = {
     username: "",
     password: "",
+    loggingIn: false,
   };
 
   handleUsernameChange = (e) => {
@@ -35,19 +39,42 @@ export default class LoginForm extends React.Component<Props, State> {
   }
 
   login = async () => {
-    const userStore = this.props.useStore!(UserStore);
-    await userStore.login(this.state.username, this.state.password);
-    Router.push("/");
+
+    const { username, password } = this.state;
+    const { alert, useStore } = this.props;
+    if (!username || !password) {
+      alert!.error("请输入用户名和密码！");
+      return;
+    }
+
+    this.setState({ loggingIn: true });
+    const userStore = useStore!(UserStore);
+    try {
+      await userStore.login(username, password);
+      alert!.success("登录成功");
+      Router.push("/");
+    } catch (e) {
+      alert!.error("出现了错误");
+    }
+    this.setState({ loggingIn: false });
   }
 
   render() {
     return (
       <Form>
         <FormGroup>
-          <Input value={this.state.username} onChange={this.handleUsernameChange}/>
+          <Input
+            value={this.state.username}
+            onChange={this.handleUsernameChange}
+            placeholder={"用户名"}
+          />
         </FormGroup>
         <FormGroup>
-          <Input value={this.state.password} onChange={this.handlePassword}/>
+          <Input
+            value={this.state.password}
+            onChange={this.handlePassword}
+            placeholder={"密码"}
+          />
         </FormGroup>
         <FormGroup check>
           <Label check>
@@ -59,7 +86,19 @@ export default class LoginForm extends React.Component<Props, State> {
             </Link>
           </div>
         </FormGroup>
-        <Button className="login-btn mt-3" block color="primary" size="lg" onClick={this.login}>登陆</Button>
+        <Button
+          className="login-btn mt-3"
+          block={true}
+          color="primary"
+          size="lg"
+          disabled={this.state.loggingIn}
+          onClick={this.login}
+        >
+          { this.state.loggingIn
+            ? "登录中"
+            : "登录"
+          }
+        </Button>
       </Form>
     );
   }

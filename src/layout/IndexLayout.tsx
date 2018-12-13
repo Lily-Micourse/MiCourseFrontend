@@ -6,6 +6,7 @@ import Footer from "@/footer/Footer";
 import styled from "styled-components";
 import { GlobalStyle } from "@/components/ui";
 import { Container } from "reactstrap";
+import AlertProvider from "@/components/alert/AlertProvider";
 
 interface Props {
   children: React.ReactNode;
@@ -13,18 +14,20 @@ interface Props {
 }
 
 const Content = styled.div`
-  margin-top: ${({ noTopPadding }) => noTopPadding ? 64 : 84}px;
+  margin-top: ${({ noTopPadding }) => noTopPadding ? 64 : 88}px;
 `;
 
 export default function IndexLayout(props: Props) {
   return (
-    <div>
-      <Navbar/>
-      <Content noTopPadding={props.noTopPadding}>
-        {props.children}
-      </Content>
-      <Footer/>
-      <GlobalStyle/>
-    </div>
+    <AlertProvider>
+      <div>
+        <Navbar />
+        <Content noTopPadding={props.noTopPadding}>
+          {props.children}
+        </Content>
+        <Footer />
+        <GlobalStyle />
+      </div>
+    </AlertProvider>
   );
 }

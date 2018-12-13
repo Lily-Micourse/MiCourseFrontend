@@ -12,7 +12,7 @@ export default function CourseDetailPage(props: Props) {
   return (
     <Container>
       <Row>
-        <Col xs={12} sm={12} md={12} lg={8}>
+        <Col xs={12} lg={8}>
           <CourseDetailPanel id={props.id}/>;
           <CourseCommentPanel/>
         </Col>

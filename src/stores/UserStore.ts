@@ -42,7 +42,7 @@ export class UserStore extends Store<IUserStore> {
     const userService = useApiService(UserService)!;
     const result = await userService.login(username, password);
     if (result.error) {
-      // something bad happened
+      throw result.error;
     } else {
       userService.setToken(result.token!);
       await this.setState({

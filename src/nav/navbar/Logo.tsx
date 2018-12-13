@@ -12,7 +12,7 @@ function toHome() {
 }
 
 function LogoImg({ brand, width, height }) {
-  return <img src={brand} width={width} height={height} alt="logo" onClick={toHome} style={{ cursor: "pointer" }}/>;
+  return <img src={brand} width={width} height={height} alt="logo" onClick={toHome} style={{ cursor: "pointer" }} />;
 }
 
 const CenterVertialDiv = styled.div`
@@ -26,13 +26,13 @@ export default function Logo() {
   return (
     <CenterVertialDiv>
       <MediaQuery maxWidth={breakpoints.smMax}>
-        <LogoImg brand={S} width={38} height={40}/>
+        <LogoImg brand={S} width={38} height={40} />
       </MediaQuery>
       <MediaQuery maxWidth={breakpoints.mdMax} minWidth={breakpoints.md}>
-        <LogoImg brand={M} width={88.4} height={40}/>
+        <LogoImg brand={M} width={88.4} height={40} />
       </MediaQuery>
       <MediaQuery minWidth={breakpoints.lg}>
-        <LogoImg brand={L} width={186} height={40}/>
+        <LogoImg brand={L} width={186} height={40} />
       </MediaQuery>
     </CenterVertialDiv>
 
