@@ -6,8 +6,9 @@ import React from "react";
 import FooterBlock from "./FooterBlock";
 import styled from "styled-components";
 import { Row, Col } from "reactstrap";
+import LimitedWidthDiv from "@/layout/LimitedWidthDiv";
 
-const FooterContainer = styled.div`
+const FooterContainer = styled(LimitedWidthDiv)`
   font-size: .75rem;
   text-align: center;
   line-height: 1.125rem;

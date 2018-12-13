@@ -21,7 +21,7 @@ interface State {
 const StyledNavbar = styled(BSNavbar)`
   background-color: #88c5e1;
   border-bottom: 5px solid #54abd4;
-  padding: 12px 0;
+  //padding: 12px 0;
   color: white;
 
   .row {

@@ -23,7 +23,7 @@ const Wrapper = styled.div`
 const NavTab = styled.div`
   color: white;
   cursor: pointer;
-  margin: 0 0 1rem -1rem;
+  //margin: 0 0 1rem -1rem;
   font-size: 16px;
   
   ${({ active }) => active 
@@ -52,7 +52,7 @@ export default class Login extends React.Component<State> {
 
   render() {
     return (
-      <IndexLayout>
+      <IndexLayout noTopPadding={true}>
         <Wrapper>
           <Container>
             <Row>

@@ -15,7 +15,7 @@ export default class CourseDetailPage extends React.Component<Props, {}> {
     const courseService = useApiService(CourseService);
     const detail = await courseService.getCourseDetail(this.props.id);
     return detail;
-  };
+  }
 
   render() {
     return (

@@ -17,6 +17,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-size: .875rem;
+    background-color: #EEEDE8;
   }
 
   .btn-primary {
@@ -37,6 +38,7 @@ const GlobalStyle = createGlobalStyle`
     background-color: #88c5e1;
 
   }
+  
 `;
 
 export default GlobalStyle;

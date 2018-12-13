@@ -6,6 +6,7 @@ import CourseList from "@/pages/courselist/CourseList";
 import { CourseService } from "@/apis/CourseService";
 import { CourseListItem } from "@/models/course/Course";
 import { CourseListQuery, CourseQueryType, CourseType } from "@/models/course/CourseQuery";
+import LimitedWidthDiv from "@/layout/LimitedWidthDiv";
 
 interface SearchQuery extends CourseListQuery {
   id?: string;
@@ -32,10 +33,12 @@ export default class CoursePage extends React.Component<Props> {
   render() {
     return (
       <IndexLayout>
+        <LimitedWidthDiv>
         {"id" in this.props
           ? <CourseDetailPage id={this.props.id}/>
           : <CourseList list={this.props.list}/>
         }
+        </LimitedWidthDiv>
       </IndexLayout>
     );
   }
