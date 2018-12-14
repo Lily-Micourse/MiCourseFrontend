@@ -1,6 +1,7 @@
 import { CourseService } from "@/apis/CourseService";
 import { CourseListItem } from "@/models/course/Course";
 import { CourseQueryType, CourseType } from "@/models/course/CourseQuery";
+import { waitForMs } from "@/utils/wait";
 
 export class CourseServiceMock extends CourseService {
 
@@ -98,5 +99,33 @@ export class CourseServiceMock extends CourseService {
         commentNum: 10,
       }];
     }
+  }
+
+  async getCourseComments(courseId: string) {
+    await waitForMs(1000);
+    return [
+      {
+        id: "1",
+        userId: "123",
+        nickname: "czy",
+        avatar: "",
+        isNjuer: true,
+        content: "这个课好啊。",
+        time: "2018.11.23 23:49:10",
+        term: "2016年秋季学期",
+        comments: [],
+        agree: 300,
+        disagree: 1024,
+        voting: 0 as 0,
+      }
+    ];
+  }
+
+  async comment(courseId: string, content: string, term: string) {
+
+  }
+
+  async getAllTerms(courseId: string) {
+    return [ "2018年春季学期", "2017年秋季学期" ];
   }
 }

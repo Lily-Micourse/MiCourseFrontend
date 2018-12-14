@@ -30,7 +30,7 @@ export default function CourseDetailPanel({ id }: Props) {
             <Overview info={data!}/>
             <CourseStatistics indexes={data!}/>
             <Description content={data!.description}/>
-            <FeedbackButtonGroup/>
+            <FeedbackButtonGroup courseId={id}/>
           </>
         );
       }}
