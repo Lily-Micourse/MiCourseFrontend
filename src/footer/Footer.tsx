@@ -1,4 +1,3 @@
-import MediaQuery from "react-responsive";
 import Brand from "~/static/img/Brand-S.png";
 import LilyStudio from "~/static/img/LilyStudio.png";
 import breakpoints from "@/utils/breakpoints";
@@ -7,78 +6,32 @@ import FooterBlock from "./FooterBlock";
 import styled from "styled-components";
 import { Row, Col } from "reactstrap";
 import LimitedWidthDiv from "@/layout/LimitedWidthDiv";
+import FooterInfo from "./FooterInfo";
 
 const FooterContainer = styled(LimitedWidthDiv)`
-  font-size: .75rem;
-  text-align: center;
-  line-height: 1.125rem;
-  padding: 0 15px 0 15px;
+  margin-right: auto;
+  margin-left: auto;
+
+  @media (min-width: ${breakpoints.md}){
+    width: 750px;
+  }
+
+  @media (min-width: ${breakpoints.lg}){
+    width: 970px;
+  }
+
+  @media (min-width: ${breakpoints.xl}){
+    width: 1170px;
+  }
 `;
 
 const StyledFooter = styled.footer`
-  a {
-    color: #7d7d7d;
-    text-decoration: none;
-    cursor: pointer;
-    margin: 0 2px 0 2px;
-  }
-
-  p {
-    margin: 0;
-  }
-
-  .pull-left {
-    float: left;
-  }
-
-  .pull-right {
-    float: right;
-  }
-
-  @media (min-width: 768px){
-    .footer-container {
-      width: 750px;
-    }
-  }
-
-  @media (max-width: 992px) {
-    .footer-block {
-      width: 100%;
-    }
-  }
-
-  @media (min-width: 992px){
-    .footer-container {
-      width: 970px;
-    }
-    .footer-block {
-      width: 50%;
-    }
-  }
-
-  @media (min-width: 1200px){
-    .footer-container {
-      width: 1170px;
-    }
-  }
-
-    padding: 28px 0 18px 0;
-    background: #eeece1;
-    color: #7d7d7d;
-    font-size: .75rem;
-    line-height: 1.125rem;
-    display: block;
-
-  .footer-container {
-    margin-right: auto;
-    margin-left: auto;
-  }
-
-  .footer-block {
-    position: relative;
-    min-height: 1px;
-    padding: 0 15px 12px 15px;
-  }
+  padding: 28px 0 18px 0;
+  background: #eeece1;
+  color: #7d7d7d;
+  font-size: .75rem;
+  line-height: 1.125rem;
+  display: block;
 `;
 
 const title1 = "关于米课";
@@ -98,16 +51,7 @@ export default function Footer() {
             <FooterBlock brand={LilyStudio} title={title2} context={context2} />
           </Col>
         </Row>
-        <div className="footer-info">
-          <p>
-            <a href="http://www.nju.edu.cn">南大首页</a>
-            <a href="http://jw.nju.edu.cn">南大教务</a>
-            <a role="button" href="#" data-toggle="modal" data-target="#modal-feedback">意见反馈</a>
-            <a className="special-link" href="/sorter/">米课分一分^ ^</a>
-          </p>
-          <p>Designed & developed by CPC, Hane, ZingSS, SuperLatte, Christine & Polaris.</p>
-          <p>Copyright &copy; Lily Studio, 2015-2018</p>
-        </div>
+        <FooterInfo/>
       </FooterContainer>
     </StyledFooter>
   );

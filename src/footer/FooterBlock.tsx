@@ -1,9 +1,8 @@
 import { Media } from "reactstrap";
 import styled from "styled-components";
+import breakpoints from "@/utils/breakpoints";
 
 const StyledDiv = styled.div`
-
-  padding: 8px;
 
   .media-body {
     padding-left: 2%;
@@ -28,24 +27,42 @@ const StyledDiv = styled.div`
     height: auto;
     display: block;
   }
+  
+  position: relative;
+  min-height: 1px;
+  padding: 0 15px 12px 15px;
+
+  @media (max-width: ${breakpoints.lg}) {
+    width: 100%;
+  }
+
+  @media (min-width: ${breakpoints.lg}){
+    width: 50%;
+  }
 `;
 
-export default function FooterBlock(props) {
+interface Props {
+  brand: string;
+  title: string;
+  context: string;
+}
+
+export default function FooterBlock(props: Props) {
 
   return (
-      <StyledDiv>
-        <Media>
-          <Media left>
-            <Media src={props.brand} alt="logo" />
-          </Media>
-          <Media body>
-            <Media heading>
-              {props.title}
-            </Media>
-            {props.context}
-          </Media>
+    <StyledDiv>
+      <Media>
+        <Media left>
+          <Media src={props.brand} alt="logo" />
         </Media>
-      </StyledDiv>
+        <Media body>
+          <Media heading>
+            {props.title}
+          </Media>
+          {props.context}
+        </Media>
+      </Media>
+    </StyledDiv>
   );
 
 }
