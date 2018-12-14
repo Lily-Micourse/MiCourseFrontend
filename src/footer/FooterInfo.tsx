@@ -4,7 +4,6 @@ const StyledFooterInfo = styled.div`
   font-size: .75rem;
   text-align: center;
   line-height: 1.125rem;
-  padding: 0 15px 0 15px;
   
   a {
     color: #7d7d7d;

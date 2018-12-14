@@ -1,74 +1,52 @@
 import * as React from "react";
 import IndexLayout from "@/layout/IndexLayout";
-import MainProfile from "@/components/profile/MainProfile";
+import UserInfo from "@/pages/user/UserInfo";
+import { ContainerStyle } from "@/components/ui/index";
+import { Row, Col } from "reactstrap";
+import styled from "styled-components";
+
+const StyledCard = styled.div`
+  min-height: 100px;
+  background-color: #FFFFFF;
+  border-radius: 1px 1px 1px 1px;
+  box-shadow: 0 14px 10px -10px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+`;
+
+const UserPages = styled.div`
+  padding-top: 8px;
+  background-color: #eeede8;
+  color: #7d7d7d;
+  font-size: .875rem;
+  line-height: 24px;
+`;
 
 export default class Profile extends React.Component {
   render() {
     return (
-      <>
-        <IndexLayout>
-          <div className="common-container">
-            <div className="row">
-              <div className="section section-r">
-                <div className="section-content">
-                  <MainProfile/>
+      <IndexLayout>
+        <UserPages>
+          <ContainerStyle>
+            <Row>
+              <Col lg={8}>
+                <div>
+                  <StyledCard>
+                    xxx
+                  </StyledCard>
                 </div>
-              </div>
-              <div className="section section-l">
-                <div className="section-content">
+              </Col>
+              <Col lg={4}>
+                <div>
+                  <StyledCard>
+                    <UserInfo/>
+                  </StyledCard>
                 </div>
-              </div>
-            </div>
-          </div>
-          个人主页
-        </IndexLayout>
-        {/*language=CSS*/}
-        <style>{`
-
-
-
-        `}</style>
-        {/*language=CSS*/}
-        <style jsx global>{`
-
-          .content {
-            background-color: #eeede8;
-            padding-top: 8px;
-          }
-
-          .section-content {
-            min-height: 100px;
-            background-color: #FFFFFF;
-            border-radius: 1px 1px 1px 1px;
-            box-shadow: 0 14px 10px -10px rgba(0,0,0,0.1);
-          }
-
-          .section {
-            padding: 0 15px 0 15px;
-            margin: 0 0 20px 0;
-            position: relative;
-          }
-
-          @media (max-width: 992px) {
-            .section {
-              width: 100%;
-            }
-          }
-
-          @media (min-width: 992px){
-            .section-r {
-              width: 33.33%;
-              left: 66.66%;
-            }
-            .section-l {
-              width: 66.66%;
-              right: 33.33%;
-            }
-          }
-
-        `}
-        </style>
-      </>
+              </Col>
+            </Row>
+          </ContainerStyle>
+        </UserPages>
+        个人主页
+      </IndexLayout>
     );
   }
 }

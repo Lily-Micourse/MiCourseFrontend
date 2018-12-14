@@ -1,6 +1,5 @@
 import { Media } from "reactstrap";
 import styled from "styled-components";
-import breakpoints from "@/utils/breakpoints";
 
 const StyledDiv = styled.div`
 
@@ -29,16 +28,7 @@ const StyledDiv = styled.div`
   }
   
   position: relative;
-  min-height: 1px;
-  padding: 0 15px 12px 15px;
-
-  @media (max-width: ${breakpoints.lg}) {
-    width: 100%;
-  }
-
-  @media (min-width: ${breakpoints.lg}){
-    width: 50%;
-  }
+  padding-bottom: 12px;
 `;
 
 interface Props {

@@ -3,3 +3,6 @@ export { Section };
 
 import GlobalStyle from "./GlobalStyle";
 export { GlobalStyle };
+
+import ContainerStyle from "./ContainerStyle";
+export { ContainerStyle };

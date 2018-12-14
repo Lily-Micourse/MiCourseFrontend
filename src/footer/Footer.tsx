@@ -1,29 +1,11 @@
 import Brand from "~/static/img/Brand-S.png";
 import LilyStudio from "~/static/img/LilyStudio.png";
-import breakpoints from "@/utils/breakpoints";
 import React from "react";
 import FooterBlock from "./FooterBlock";
 import styled from "styled-components";
 import { Row, Col } from "reactstrap";
-import LimitedWidthDiv from "@/layout/LimitedWidthDiv";
+import { ContainerStyle } from "@/components/ui/index";
 import FooterInfo from "./FooterInfo";
-
-const FooterContainer = styled(LimitedWidthDiv)`
-  margin-right: auto;
-  margin-left: auto;
-
-  @media (min-width: ${breakpoints.md}){
-    width: 750px;
-  }
-
-  @media (min-width: ${breakpoints.lg}){
-    width: 970px;
-  }
-
-  @media (min-width: ${breakpoints.xl}){
-    width: 1170px;
-  }
-`;
 
 const StyledFooter = styled.footer`
   padding: 28px 0 18px 0;
@@ -42,7 +24,7 @@ const context2 = "工作室成立于2000年，是由南京大学网络爱好者�
 export default function Footer() {
   return (
     <StyledFooter>
-      <FooterContainer>
+      <ContainerStyle>
         <Row>
           <Col md={6}>
             <FooterBlock brand={Brand} title={title1} context={context1}/>
@@ -52,7 +34,7 @@ export default function Footer() {
           </Col>
         </Row>
         <FooterInfo/>
-      </FooterContainer>
+      </ContainerStyle>
     </StyledFooter>
   );
 
