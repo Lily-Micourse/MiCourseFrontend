@@ -9,6 +9,7 @@ import styled from "styled-components";
 import { WithAlertProps, withAlert } from "@/components/alert";
 
 interface Props {
+  terms: string[];
   courseId: string;
 }
 
@@ -21,6 +22,10 @@ const Ul = styled.ul`
     list-style-type: none;
     margin: 0;
     padding: 0;
+
+    li {
+
+    }
 `;
 
 
@@ -55,12 +60,16 @@ export default class CourseCommentPanel extends React.Component<Props, State> {
     return (
       <Section>
         <h4>课程评论</h4>
-        <InputPanel courseId={this.props.courseId} refreshComments={this.fetch}/>
-        { loading
+        <InputPanel
+          terms={this.props.terms}
+          courseId={this.props.courseId}
+          refreshComments={this.fetch}
+        />
+        {loading
           ? "加载评论中……"
           : (
             <Ul>
-            { comments.map((x) => <CommentItem key={x.id} comment={x}/>) }
+              {comments.map((x) => <CommentItem key={x.id} comment={x} />)}
             </Ul>
           )
         }

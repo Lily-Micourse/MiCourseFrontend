@@ -3,6 +3,7 @@ import { CourseDetail } from "@/models/course/CourseDetail";
 import { CourseListItem } from "@/models/course/Course";
 import { CourseQueryType, CourseType } from "@/models/course/CourseQuery";
 import { Comment } from "@/models/course/CourseComment";
+import { CourseFeedback } from "@/models/course/CourseFeedback";
 
 interface CourseListQuery {
   type?: CourseType;
@@ -17,6 +18,14 @@ export class CourseService extends HttpService {
     return this.fetch<CourseDetail>({
       path: "/course",
       params: { courseId },
+    });
+  }
+
+  async feedbackCourse(courseId: string, feedback: CourseFeedback) {
+    return this.fetch<void>({
+      path: "/course/feedback",
+      params: { courseId },
+      body: feedback,
     });
   }
 

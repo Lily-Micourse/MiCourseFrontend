@@ -9,6 +9,7 @@ import CommentTextArea from "./CommentTextArea";
 
 interface Props extends WithAlertProps {
   courseId: string;
+  terms: string[];
   refreshComments(): void;
 }
 
@@ -49,8 +50,8 @@ export default class InputPanel extends React.Component<Props, State> {
     refreshComments();
   }
 
-  onTextareaChange = (e) => {
-    this.setState({ input: e.target.value });
+  onTextareaChange = (value) => {
+    this.setState({ input: value });
   };
 
   onTermChange = (term: string) => {
@@ -60,9 +61,13 @@ export default class InputPanel extends React.Component<Props, State> {
   render() {
     return (
       <InputGroupComment>
-        <CommentTextArea onChange={this.onTextareaChange} value={this.state.input}  />
+        <CommentTextArea onChange={this.onTextareaChange} value={this.state.input} />
         <SpaceBetweenDiv>
-          <TermSelection courseId={this.props.courseId} onTermSelected={this.onTermChange} />
+          <TermSelection
+            terms={this.props.terms}
+            selectedTerm={this.state.term}
+            onChange={this.onTermChange}
+          />
           <Button color="primary" className="pull-right" onClick={this.onComment}>
             评价这门课
           </Button>

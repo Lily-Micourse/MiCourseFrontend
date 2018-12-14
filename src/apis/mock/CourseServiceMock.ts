@@ -2,6 +2,9 @@ import { CourseService } from "@/apis/CourseService";
 import { CourseListItem } from "@/models/course/Course";
 import { CourseQueryType, CourseType } from "@/models/course/CourseQuery";
 import { waitForMs } from "@/utils/wait";
+import { CourseFeedback } from "@/models/course/CourseFeedback";
+
+const terms = [ "2018年春季学期", "2017年秋季学期" ];
 
 export class CourseServiceMock extends CourseService {
 
@@ -23,7 +26,8 @@ export class CourseServiceMock extends CourseService {
       credit: 3,
       department: "计算机科学与技术学院",
       cover: "",
-      hasFeedback: true,
+      hasFeedback: false,
+      terms: terms,
       pressureIndexes: {
         low: 30,
         moderate: 10,
@@ -124,8 +128,7 @@ export class CourseServiceMock extends CourseService {
   async comment(courseId: string, content: string, term: string) {
 
   }
+  async feedbackCourse(courseId: string, feedback: CourseFeedback) {
 
-  async getAllTerms(courseId: string) {
-    return [ "2018年春季学期", "2017年秋季学期" ];
   }
 }

@@ -7,6 +7,7 @@ import { CourseService } from "@/apis/CourseService";
 import { CourseListItem } from "@/models/course/Course";
 import { CourseListQuery, CourseQueryType, CourseType } from "@/models/course/CourseQuery";
 import LimitedWidthDiv from "@/layout/LimitedWidthDiv";
+import { CourseDetail } from "@/models/course/CourseDetail";
 
 interface SearchQuery extends CourseListQuery {
   id?: string;

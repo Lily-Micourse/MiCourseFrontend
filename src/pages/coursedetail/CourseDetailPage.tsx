@@ -14,7 +14,6 @@ export default function CourseDetailPage(props: Props) {
       <Row>
         <Col xs={12} lg={8}>
           <CourseDetailPanel id={props.id}/>;
-          <CourseCommentPanel courseId={props.id}/>
         </Col>
         <Col xs={0} lg={4}>
           <Recommendation/>

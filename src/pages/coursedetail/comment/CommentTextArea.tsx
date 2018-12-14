@@ -26,5 +26,9 @@ const Textarea = styled.textarea`
 
 
 export default function CommentTextArea(props: Props) {
-  return <Textarea placeholder={"来一发吐槽~~"} onChange={props.onChange} value={props.value}/>;
+  return <Textarea
+    placeholder={"来一发吐槽~~"}
+    onChange={(e) => props.onChange(e.target.value)}
+    value={props.value}
+  />;
 }
