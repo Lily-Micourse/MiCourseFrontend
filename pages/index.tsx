@@ -4,7 +4,6 @@ import { UserStore } from "@/stores/UserStore";
 import { connect, ConnectedProps } from "@/stores/connect";
 
 interface Props extends ConnectedProps {
-  abd: string;
 }
 
 @connect(UserStore)

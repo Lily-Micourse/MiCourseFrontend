@@ -1,11 +1,14 @@
 import { HttpService, HttpServiceType } from "@/apis/HttpService";
 import { UserService } from "@/apis/UserService";
 import UserServiceMock from "@/apis/mock/UserServiceMock";
+import { CourseService } from "@/apis/CourseService";
+import { CourseServiceMock } from "@/apis/mock/CourseServiceMock";
 
 export const USE_MOCK = true;
 
 const services = [
   [UserService, USE_MOCK ? UserServiceMock : UserService],
+  [CourseService, USE_MOCK ? CourseServiceMock : CourseService ],
 ];
 
 const serviceConfig = new Map<HttpServiceType, HttpService>();

@@ -1,10 +1,10 @@
 import * as React from "react";
 import NavbarExpandedMenu from "@/nav/navbarmenu/NavbarExpandedMenu";
-import NavbarDropdownMenu from "@/nav/navbarmenu/NavbarDropdownMenu";
 import { connect, ConnectedProps } from "@/stores/connect";
 import { UserStore } from "@/stores/UserStore";
 import { basicLinks, extendedLinksAfterLogin, withoutLoginLinks } from "@/nav/navbarmenu/links";
 import Router from "next/router";
+import StyledDropdownMenu from "./StyledDropdownMenu";
 
 interface Props extends ConnectedProps {
   type: "expanded" | "dropdown";
@@ -25,8 +25,23 @@ export default connect(UserStore)((props: Props) => {
   };
 
   if (props.type === "expanded") {
-    return (<NavbarExpandedMenu basicLinks={basicLinks} extendedLinks={[...extendedLinksAfterLogin, logoutLink]} withoutLoginLinks={withoutLoginLinks} loggedIn={userStore.loggedIn} />);
+    return (
+    <NavbarExpandedMenu
+      basicLinks={basicLinks}
+      extendedLinks={[...extendedLinksAfterLogin, logoutLink]}
+      withoutLoginLinks={withoutLoginLinks}
+      loggedIn={userStore.loggedIn}
+    />
+    );
   } else {
-    return (<NavbarDropdownMenu withinLoginLinks={[...basicLinks, ...extendedLinksAfterLogin, logoutLink]} withoutLoginLinks={withoutLoginLinks} loggedIn={userStore.loggedIn}/>);
+    if (userStore.loggedIn) {
+      return (
+        <StyledDropdownMenu links={[...basicLinks, ...extendedLinksAfterLogin, logoutLink]}/>
+      );
+    } else {
+      return (
+        <StyledDropdownMenu links={withoutLoginLinks}/>
+      );
+    }
   }
 });

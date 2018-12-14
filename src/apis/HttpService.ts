@@ -4,7 +4,7 @@ import { Container } from "unstated";
 export interface FetchInfo {
   path?: string;
   method?: HttpMethod;
-  params?: { [s: string]: string };
+  params?: any;
   body?: any;
   headers?: { [s: string]: string };
 }
