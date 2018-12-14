@@ -1,9 +1,8 @@
-import MediaQuery from "react-responsive";
 import Brand from "~/static/img/Brand-S.png";
 import LilyStudio from "~/static/img/LilyStudio.png";
-import breakpoints from "@/utils/breakpoints";
 import React from "react";
 import FooterBlock from "./FooterBlock";
+import FooterInfo from "./FooterInfo";
 
 export default function Footer() {
 
@@ -15,83 +14,16 @@ export default function Footer() {
   return (
     <>
       <footer>
-        <div className="footer-container">
+        <div className="common-container">
           <div className="row">
-            <MediaQuery minWidth={breakpoints.lg}>
-              <FooterBlock brand={Brand} title={title1} context={context1} className="footer-block"/>
-              <FooterBlock brand={LilyStudio} title={title2} context={context2} className="footer-block"/>
-            </MediaQuery>
-            <MediaQuery maxWidth={breakpoints.mdMax}>
-              <FooterBlock brand={Brand} title={title1} context={context1} className="pull-left footer-block"/>
-              <FooterBlock brand={LilyStudio} title={title2} context={context2} className="pull-right footer-block"/>
-            </MediaQuery>
+            <FooterBlock brand={Brand} title={title1} context={context1}/>
+            <FooterBlock brand={LilyStudio} title={title2} context={context2}/>
           </div>
-          <div className="footer-info">
-            <p>
-              <a href="http://www.nju.edu.cn">南大首页</a>
-              <a href="http://jw.nju.edu.cn">南大教务</a>
-              <a role="button" href="#" data-toggle="modal" data-target="#modal-feedback">意见反馈</a>
-              <a className="special-link" href="/sorter/">米课分一分^ ^</a>
-            </p>
-            <p>Designed & developed by CPC, Hane, ZingSS, SuperLatte, Christine & Polaris.</p>
-            <p>Copyright &copy; Lily Studio, 2015-2018</p>
-          </div>
+          <FooterInfo/>
         </div>
       </footer>
       {/*language=CSS*/}
       <style jsx>{`
-        .footer-info {
-          font-size: .75rem;
-          text-align: center;
-          line-height: 1.125rem;
-          padding: 0 15px 0 15px;
-        }
-
-        a {
-          color: #7d7d7d;
-          text-decoration: none;
-          cursor: pointer;
-          margin: 0 2px 0 2px;
-        }
-
-        p {
-          margin: 0;
-        }
-
-        .pull-left {
-          float: left;
-        }
-
-        .pull-right {
-          float: right;
-        }
-
-        @media (min-width: 768px){
-          .footer-container {
-            width: 750px;
-          }
-        }
-
-        @media (max-width: 992px) {
-          .footer-block {
-            width: 100%;
-          }
-        }
-
-        @media (min-width: 992px){
-          .footer-container {
-            width: 970px;
-          }
-          .footer-block {
-            width: 50%;
-          }
-        }
-
-        @media (min-width: 1200px){
-          .footer-container {
-            width: 1170px;
-          }
-        }
 
         footer {
           padding: 28px 0 18px 0;
@@ -102,15 +34,32 @@ export default function Footer() {
           display: block;
         }
 
-        .footer-container {
+      `}
+      </style>
+      {/*language=CSS*/}
+      <style jsx global>{`
+
+        .common-container {
           margin-right: auto;
           margin-left: auto;
         }
 
-        .footer-block {
-          position: relative;
-          min-height: 1px;
-          padding: 0 15px 12px 15px;
+        @media (min-width: 768px){
+          .common-container {
+            width: 750px;
+          }
+        }
+
+        @media (min-width: 992px){
+          .common-container {
+            width: 970px;
+          }
+        }
+
+        @media (min-width: 1200px){
+          .common-container {
+            width: 1170px;
+          }
         }
 
       `}

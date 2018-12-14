@@ -1,10 +1,20 @@
 import { Media } from "reactstrap";
 
-export default function FooterBlock(props) {
+interface Props {
+  brand: string;
+  title: string;
+  context: string;
+  className?: string;
+}
+
+export default function FooterBlock(props: Props) {
+
+  const basicClass = "pairing-block";
+  const className = props.className ? basicClass + " " + props.className : basicClass;
 
   return (
     <>
-      <div className={props.className}>
+      <div className={className}>
         <Media>
           <Media left>
             <Media src={props.brand} alt="logo" />
@@ -42,6 +52,24 @@ export default function FooterBlock(props) {
           width: 100%;
           height: auto;
           display: block;
+        }
+
+        .pairing-block {
+          position: relative;
+          min-height: 1px;
+          padding: 0 15px 12px 15px;
+        }
+
+        @media (max-width: 992px) {
+          .pairing-block {
+            width: 100%;
+          }
+        }
+
+        @media (min-width: 992px){
+          .pairing-block {
+            width: 50%;
+          }
         }
 
       `}
