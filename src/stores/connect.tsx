@@ -8,23 +8,28 @@ export interface ConnectedProps {
   useStore?: <CT extends StoreType<any>>(containerType: CT) => InstanceType<CT>;
 }
 
-export function connect<CT extends Array<StoreType<any>> = []>(...stores: Array<StoreType<any>>) {
-  return (WrappedComponent) => ((props) => {
-    return (
-      <Subscribe to={stores}>
-        {(...injectedStores) => {
-          const useStore = (containerType: StoreType<any>) => injectedStores.find((x) => x instanceof containerType);
+export function connect<CT extends Array<StoreType<any>> =[]>(...stores: Array<StoreType<any>>) {
+  return (WrappedComponent) => {
 
-          return (
-            <WrappedComponent
-              useStore={useStore}
-              {...props}
-            />
-          );
-        }
+    const Component = (props) => {
+      return (
+        <Subscribe to={stores}>
+          {(...injectedStores) => {
+            const useStore = (containerType: StoreType<any>) => injectedStores.find((x) => x instanceof containerType);
 
-        }
-      </Subscribe>
-    );
-  }) as any;
+            return (
+              <WrappedComponent
+                useStore={useStore}
+                {...props}
+              />
+            );
+          }
+
+          }
+        </Subscribe>
+      ) as any;
+    }
+    Component.getInitialProps = WrappedComponent.getInitialProps;
+    return Component as any;
+  };
 }

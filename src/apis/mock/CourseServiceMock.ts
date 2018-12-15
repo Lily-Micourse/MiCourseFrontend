@@ -1,8 +1,10 @@
 import { CourseService } from "@/apis/CourseService";
 import { CourseListItem } from "@/models/course/Course";
 import { CourseQueryType, CourseType } from "@/models/course/CourseQuery";
+import { range } from "@/utils/range";
 
 export class CourseServiceMock extends CourseService {
+
 
   async getCourseDetail(courseId: string) {
     return {
@@ -51,52 +53,35 @@ export class CourseServiceMock extends CourseService {
   }
 
   async getCoursesByType(type: CourseType, page: number, pageSize: number = 15): Promise<CourseListItem[]> {
-    return [{
-      id: "001",
-      name: "第一个课",
-      cover: "",
-      rate: 3.9,
-      credit: 2,
-      department: "软件学院",
-      category: "通识课",
-      commentNum: 10,
-    }];
+    return this.generateCourseList(page * pageSize, pageSize);
   }
 
   async getCoursesByQuery(queryType: CourseQueryType,
-                          query: string, page: number, pageSize: number = 15): Promise<CourseListItem[]> {
-    if (query === "1") {
-      return [{
-        id: "001",
-        name: "最热的课",
-        cover: "http://www.micourse.net//Public/img/icons/literature.png",
-        rate: 3.9,
-        credit: 2,
-        department: "软件学院",
-        category: "通识课",
-        commentNum: 10,
-      }];
-    } else {
-      return [{
-        id: "001",
-        name: "最热的课",
-        cover: "http://www.micourse.net/Public/img/icons/literature.png",
-        rate: 3.9,
-        credit: 2,
-        department: "软件学院",
-        category: "通识课",
-        commentNum: 10,
-      },
+    query: string, page: number, pageSize: number = 15): Promise<CourseListItem[]> {
+      return this.generateCourseList(page * pageSize, pageSize);
+  }
+
+
+  generateCourseList(start: number, length: number): CourseListItem[] {
+    const res: CourseListItem[] = [];
+    const covers:string[]=[
+      "http://www.micourse.net/Public/img/icons/film.png",
+      "http://www.micourse.net/Public/img/icons/art.png",
+      "http://www.micourse.net/Public/img/icons/music.png",
+      "http://www.micourse.net/Public/img/icons/history.png",
+    ];
+    range(start, start + length).map(x => res.push(
       {
-        id: "002",
-        name: "最热的课2",
-        cover: "http://www.micourse.net/Public/img/icons/film.png",
-        rate: 2.5,
+        id: "00" + x,
+        name: "课程" + x,
+        cover: covers[Math.floor(Math.random()*covers.length)],
+        rate: parseFloat(Number(Math.random()*5).toFixed(1)),
         credit: 2,
         department: "软件学院",
         category: "通识课",
         commentNum: 10,
-      }];
-    }
+      }
+    ))
+    return res;
   }
 }

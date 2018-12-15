@@ -39,13 +39,18 @@ const GlobalStyle = createGlobalStyle`
     background-color: #88c5e1;
 
   }
-  
+
   @media (min-width: ${breakpoints.sm}) and (max-width: ${breakpoints.smMax}) {
     .container {
       max-width: initial;
     }
   }
-  
+
+  h4{
+    font-size: 1.125rem;
+    color:#666;
+  }
+
 `;
 
 export default GlobalStyle;
