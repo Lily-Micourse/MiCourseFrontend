@@ -3,8 +3,6 @@ import styled from "styled-components";
 
 const StyledDiv = styled.div`
 
-  padding: 8px;
-
   .media-body {
     padding-left: 2%;
   }
@@ -28,24 +26,33 @@ const StyledDiv = styled.div`
     height: auto;
     display: block;
   }
+  
+  position: relative;
+  padding-bottom: 12px;
 `;
 
-export default function FooterBlock(props) {
+interface Props {
+  brand: string;
+  title: string;
+  context: string;
+}
+
+export default function FooterBlock(props: Props) {
 
   return (
-      <StyledDiv>
-        <Media>
-          <Media left>
-            <Media src={props.brand} alt="logo" />
-          </Media>
-          <Media body>
-            <Media heading>
-              {props.title}
-            </Media>
-            {props.context}
-          </Media>
+    <StyledDiv>
+      <Media>
+        <Media left>
+          <Media src={props.brand} alt="logo" />
         </Media>
-      </StyledDiv>
+        <Media body>
+          <Media heading>
+            {props.title}
+          </Media>
+          {props.context}
+        </Media>
+      </Media>
+    </StyledDiv>
   );
 
 }
