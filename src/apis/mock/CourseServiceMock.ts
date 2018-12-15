@@ -74,7 +74,7 @@ export class CourseServiceMock extends CourseService {
       return [{
         id: "001",
         name: "最热的课",
-        cover: "",
+        cover: "http://www.micourse.net//Public/img/icons/literature.png",
         rate: 3.9,
         credit: 2,
         department: "软件学院",
@@ -85,7 +85,7 @@ export class CourseServiceMock extends CourseService {
       return [{
         id: "001",
         name: "最热的课",
-        cover: "",
+        cover: "http://www.micourse.net/Public/img/icons/literature.png",
         rate: 3.9,
         credit: 2,
         department: "软件学院",
@@ -95,8 +95,8 @@ export class CourseServiceMock extends CourseService {
       {
         id: "002",
         name: "最热的课2",
-        cover: "",
-        rate: 3.9,
+        cover: "http://www.micourse.net/Public/img/icons/film.png",
+        rate: 2.5,
         credit: 2,
         department: "软件学院",
         category: "通识课",
