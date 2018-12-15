@@ -6,11 +6,10 @@ import { connect, ConnectedProps } from "@/stores/connect";
 interface Props extends ConnectedProps {
 }
 
-@connect(UserStore)
-export default class IndexPage extends React.Component<Props> {
+class IndexPage extends React.Component<Props> {
 
   render() {
-    const userStore = this.props.useStore!(UserStore);
+    const userStore = this.props.useStore(UserStore);
     return (
       <IndexLayout>
         <p>
@@ -20,3 +19,5 @@ export default class IndexPage extends React.Component<Props> {
     );
   }
 }
+
+export default connect(UserStore)(IndexPage);

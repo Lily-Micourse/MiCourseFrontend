@@ -8,6 +8,7 @@ import styled from "styled-components";
 import { Star } from "@/components/ui/Star";
 import Label from "@/components/ui/Label";
 import Hexagon from "@/components/ui/Hexagon";
+import college from "~/static/icons/college.png";
 
 const StyledStar = styled(Star)`
   width: 13px;
@@ -53,7 +54,7 @@ export function CourseListItemBox({ course }: { course: CourseListItem }) {
     <>
       <Row>
         <Col xs={2} sm={1}>
-          <StyledHexagon url={course.cover} width={44} height={55} />
+          <StyledHexagon url={course.cover || college} width={44} height={55} />
         </Col>
         <Col xs={10} sm={10}>
           <ItemHeader>
@@ -67,16 +68,16 @@ export function CourseListItemBox({ course }: { course: CourseListItem }) {
             </Link>
           </ItemHeader>
           <ItemRate>
-            <StyledStar rate={course.rate as number} />
+            <StyledStar rate={course.rate} />
           </ItemRate>
         </Col>
       </Row>
       <Row>
         <Col xs={{ size: 10, offset: 2 }} sm={{ size: 11, offset: 1 }}>
           <ItemLabels>
-            <Label value={course.category} type="category"></Label>
-            <Label value={course.credit + "学分"} type="credit"></Label>
-            <Label value={course.department} type="department"></Label>
+            <Label value={course.category} type="category" />
+            <Label value={course.credit + "学分"} type="credit" />
+            <Label value={course.department} type="department" />
           </ItemLabels>
         </Col>
       </Row>

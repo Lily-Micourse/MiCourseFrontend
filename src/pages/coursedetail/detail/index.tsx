@@ -15,7 +15,6 @@ interface Props {
 }
 
 async function fetchInformation(id: string) {
-  await waitForMs(2000);
   const service = useApiService(CourseService);
   return service.getCourseDetail(id);
 

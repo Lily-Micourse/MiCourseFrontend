@@ -5,9 +5,10 @@ import { Section } from "@/components/ui";
 import breakpoints from "@/utils/breakpoints";
 import star from "~/static/img/star.png";
 import starEm from "~/static/img/starEm.png";
-import literature from "~/static/img/literature1.png";
+import literature from "~/static/icons/literature.png";
 import { range } from "@/utils/range";
 import FeedbackButtonGroup from "./FeedbackButtonGroup";
+import Hexagon from "@/components/ui/Hexagon";
 
 interface Props {
   info: {
@@ -78,6 +79,10 @@ color: #666;
 }
 `;
 
+const InfoIcon = styled.div`
+  display: inline-block;
+`;
+
 const StyledSection = styled(Section)`
   padding: 0;
 `;
@@ -112,11 +117,13 @@ export default function Overview({ info, refetch }: Props) {
       <Row>
         <Col md={8}>
           <InfoAvatar>
-            <img src={literature} />
+            <InfoIcon>
+              <Hexagon width={64} height={80} url={literature} />
+            </InfoIcon>
             <h3>{info.name}</h3>
             <Star rate={info.rate} />
             <FeedbackButtonGroup
-            refetchDetail={refetch}
+              refetchDetail={refetch}
               terms={info.terms}
               courseId={info.id}
               hasFeedback={info.hasFeedback}

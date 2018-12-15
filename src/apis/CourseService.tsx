@@ -4,6 +4,7 @@ import { CourseListItem } from "@/models/course/Course";
 import { CourseQueryType, CourseType } from "@/models/course/CourseQuery";
 import { Comment } from "@/models/course/CourseComment";
 import { CourseFeedback } from "@/models/course/CourseFeedback";
+import { CommentFeedbackAction, CommentFeedback } from "@/models/course/CommentFeedback";
 
 interface CourseListQuery {
   type?: CourseType;
@@ -62,6 +63,25 @@ export class CourseService extends HttpService {
   async getCoursesByQuery(queryType: CourseQueryType,
                           query: string, page: number, pageSize: number = 15): Promise<CourseListItem[]> {
     return this.getCourses({ queryType, query, page, pageSize });
+  }
+
+  async feedbackComment(feedback: CommentFeedback, commentId: string, subCommentId?: string): Promise<"success" | "conflict"> {
+    try {
+      await this.fetch({
+        path: "/course/comment/feedback",
+        method: HttpMethod.POST,
+        params: { commentId, subCommentId },
+        body: feedback,
+      });
+      return "success";
+    } catch (e) {
+      if (e.statusCode === 409) {
+        return "conflict";
+      } else {
+        throw e;
+      }
+    }
+
   }
 
   private async getCourses(query: CourseListQuery): Promise<CourseListItem[]> {

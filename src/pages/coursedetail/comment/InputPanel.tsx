@@ -22,7 +22,6 @@ const InputGroupComment = styled.div`
   padding: 0 0 18px 0;
 `;
 
-
 const SpaceBetweenDiv = styled.div`
   display: flex;
   justify-content: space-between;
@@ -38,8 +37,6 @@ export default class InputPanel extends React.Component<Props, State> {
 
   };
 
-
-
   onComment = async () => {
     const { courseId, refreshComments, alert } = this.props;
     const { input, term } = this.state;
@@ -52,7 +49,7 @@ export default class InputPanel extends React.Component<Props, State> {
 
   onTextareaChange = (value) => {
     this.setState({ input: value });
-  };
+  }
 
   onTermChange = (term: string) => {
     this.setState({ term });
@@ -74,6 +71,6 @@ export default class InputPanel extends React.Component<Props, State> {
         </SpaceBetweenDiv>
 
       </InputGroupComment>
-    )
+    );
   }
 }

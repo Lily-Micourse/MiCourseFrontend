@@ -6,7 +6,6 @@ const options = {
   position: "top center",
   timeout: 3000,
   offset: "100px",
-  zIndex: 2000,
 } as AlertCustomOptions;
 
 export default ({ children }) => {
@@ -14,5 +13,5 @@ export default ({ children }) => {
     <AlertProvider template={AlertTemplate} {...options}>
       {children}
     </AlertProvider>
-  )
+  );
 };

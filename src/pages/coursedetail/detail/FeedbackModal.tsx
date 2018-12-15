@@ -11,7 +11,6 @@ import { useApiService } from "@/apis";
 import { CourseService } from "@/apis/CourseService";
 import { withAlert, WithAlertProps } from "@/components/alert";
 
-
 interface Option<T> {
   text: string;
   value: T;
@@ -44,22 +43,20 @@ const checkinOptions: Option<string>[] = [
   { text: "一次", value: "once" },
   { text: "两次", value: "twice" },
   { text: "小于或等于5次", value: "lessThanFive" },
-  { text: "大于5次", value: "moreThanFive" }
+  { text: "大于5次", value: "moreThanFive" },
 ];
 
 const examineOptions: Option<string>[] = [
   { text: "论文", value: "essay" },
   { text: "签到", value: "checkin" },
   { text: "讨论", value: "discussion" },
-]
+];
 
 interface ButtonOptionGroupProps<T> {
   options: Option<T>[];
   value: T | T[];
   onChange(option: Option<T>);
 }
-
-
 
 function ButtonOptionGroup<T>({ options, onChange, value }: ButtonOptionGroupProps<T>) {
   return (
@@ -94,7 +91,6 @@ interface Props extends WithAlertProps {
   refetchDetail(): void;
 }
 
-
 interface State {
   term: string;
   rate: number;
@@ -115,7 +111,7 @@ export default class FeedbackModal extends React.Component<Props, State> {
     grade: "A",
     comment: "",
     checkinTimes: "never",
-    examine: [] as string[]
+    examine: [] as string[],
   } as State;
 
   onCommentChange = (comment) => {
@@ -134,7 +130,6 @@ export default class FeedbackModal extends React.Component<Props, State> {
     this.props.toggle();
     this.props.refetchDetail();
     this.props.alert!.success("评价成功");
-
 
   }
 
@@ -157,7 +152,6 @@ export default class FeedbackModal extends React.Component<Props, State> {
   onCheckinTimesChange = (option: Option<string>) => {
     this.setState({ checkinTimes: option.value });
   }
-
 
   onExamineChange = (option: Option<string>) => {
     if (this.state.examine.includes(option.value)) {
@@ -239,7 +233,7 @@ export default class FeedbackModal extends React.Component<Props, State> {
         </ModalFooter>
 
       </Modal>
-    )
+    );
   }
 
 }

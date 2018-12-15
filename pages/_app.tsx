@@ -50,7 +50,7 @@ export default class MyApp extends App<IOwnProps> {
     const { Component, pageProps } = this.props;
     return (
       <Container>
-          <StoreProvider rootStore={this.store}>
+          <StoreProvider stores={[...this.store.allStores.values()]}>
             <Component {...pageProps} />
           </StoreProvider>
       </Container>

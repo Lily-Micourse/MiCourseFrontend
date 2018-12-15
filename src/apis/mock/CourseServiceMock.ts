@@ -3,6 +3,7 @@ import { CourseListItem } from "@/models/course/Course";
 import { CourseQueryType, CourseType } from "@/models/course/CourseQuery";
 import { waitForMs } from "@/utils/wait";
 import { CourseFeedback } from "@/models/course/CourseFeedback";
+import { CommentFeedbackAction, CommentFeedback } from "@/models/course/CommentFeedback";
 
 const terms = [ "2018年春季学期", "2017年秋季学期" ];
 
@@ -27,7 +28,7 @@ export class CourseServiceMock extends CourseService {
       department: "计算机科学与技术学院",
       cover: "",
       hasFeedback: false,
-      terms: terms,
+      terms,
       pressureIndexes: {
         low: 30,
         moderate: 10,
@@ -121,14 +122,18 @@ export class CourseServiceMock extends CourseService {
         agree: 300,
         disagree: 1024,
         voting: 0 as 0,
-      }
+      },
     ];
   }
 
-  async comment(courseId: string, content: string, term: string) {
+  async feedbackComment(feedback: CommentFeedback, commentId?: string, subCommentId?: string): Promise<"success" | "conflict"> {
+    return "success";
+  }
 
+  async comment(courseId: string, content: string, term: string) {
+    // nothing happens
   }
   async feedbackCourse(courseId: string, feedback: CourseFeedback) {
-
+    // nothing happens
   }
 }

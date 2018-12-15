@@ -9,7 +9,7 @@ interface Props {
 const Textarea = styled.textarea`
   margin-top: 0px;
   margin-bottom: 2px;
-  height: 51px;
+  height: 72px !important;
   width: 100%;
   height: 38px;
   margin: 0 0 2px 0;
@@ -24,11 +24,12 @@ const Textarea = styled.textarea`
   color: #777;
 `;
 
-
 export default function CommentTextArea(props: Props) {
-  return <Textarea
-    placeholder={"来一发吐槽~~"}
-    onChange={(e) => props.onChange(e.target.value)}
-    value={props.value}
-  />;
+  return (
+    <Textarea
+      placeholder={"来一发吐槽~~"}
+      onChange={(e) => props.onChange(e.target.value)}
+      value={props.value}
+    />
+  );
 }
