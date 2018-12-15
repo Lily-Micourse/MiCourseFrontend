@@ -7,6 +7,8 @@ import FeedbackButtonGroup from "@/pages/coursedetail/detail/FeedbackButtonGroup
 import { useApiService } from "@/apis";
 import { CourseService } from "@/apis/CourseService";
 import Query from "@/apis/Query";
+import CourseCommentPanel from "../comment";
+import { waitForMs } from "@/utils/wait";
 
 interface Props {
   id: string;
@@ -21,16 +23,16 @@ async function fetchInformation(id: string) {
 export default function CourseDetailPanel({ id }: Props) {
   return (
     <Query call={() => fetchInformation(id)}>
-      {(data, isLoading, error) => {
+      {(data, isLoading, error, fetch) => {
         if (isLoading) {
           return "loading...";
         }
         return (
           <>
-            <Overview info={data!}/>
+            <Overview info={data!} refetch={fetch}/>
             <CourseStatistics indexes={data!}/>
             <Description content={data!.description}/>
-            <FeedbackButtonGroup/>
+            <CourseCommentPanel terms={data!.terms} courseId={id}/>
           </>
         );
       }}

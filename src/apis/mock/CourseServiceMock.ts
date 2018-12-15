@@ -2,6 +2,11 @@ import { CourseService } from "@/apis/CourseService";
 import { CourseListItem } from "@/models/course/Course";
 import { CourseQueryType, CourseType } from "@/models/course/CourseQuery";
 import { range } from "@/utils/range";
+import { waitForMs } from "@/utils/wait";
+import { CourseFeedback } from "@/models/course/CourseFeedback";
+import { CommentFeedbackAction, CommentFeedback } from "@/models/course/CommentFeedback";
+
+const terms = [ "2018年春季学期", "2017年秋季学期" ];
 
 export class CourseServiceMock extends CourseService {
 
@@ -24,7 +29,8 @@ export class CourseServiceMock extends CourseService {
       credit: 3,
       department: "计算机科学与技术学院",
       cover: "",
-      hasFeedback: true,
+      hasFeedback: false,
+      terms,
       pressureIndexes: {
         low: 30,
         moderate: 10,
@@ -83,5 +89,36 @@ export class CourseServiceMock extends CourseService {
       }
     ))
     return res;
+  }
+
+  async getCourseComments(courseId: string) {
+    await waitForMs(1000);
+    return [
+      {
+        id: "1",
+        userId: "123",
+        nickname: "czy",
+        avatar: "",
+        isNjuer: true,
+        content: "这个课好啊。",
+        time: "2018.11.23 23:49:10",
+        term: "2016年秋季学期",
+        comments: [],
+        agree: 300,
+        disagree: 1024,
+        voting: 0 as 0,
+      },
+    ];
+  }
+
+  async feedbackComment(feedback: CommentFeedback, commentId?: string, subCommentId?: string): Promise<"success" | "conflict"> {
+    return "success";
+  }
+
+  async comment(courseId: string, content: string, term: string) {
+    // nothing happens
+  }
+  async feedbackCourse(courseId: string, feedback: CourseFeedback) {
+    // nothing happens
   }
 }

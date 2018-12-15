@@ -13,5 +13,5 @@ export default ({ children }) => {
     <AlertProvider template={AlertTemplate} {...options}>
       {children}
     </AlertProvider>
-  )
+  );
 };

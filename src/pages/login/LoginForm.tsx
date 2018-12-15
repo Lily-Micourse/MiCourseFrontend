@@ -18,8 +18,7 @@ interface Props extends ConnectedProps, WithAlertProps {
 }
 
 @withAlert
-@connect(UserStore)
-export default class LoginForm extends React.Component<Props, State> {
+class LoginForm extends React.Component<Props, State> {
   state = {
     username: "",
     password: "",
@@ -48,7 +47,7 @@ export default class LoginForm extends React.Component<Props, State> {
     }
 
     this.setState({ loggingIn: true });
-    const userStore = useStore!(UserStore);
+    const userStore = useStore(UserStore);
     try {
       await userStore.login(username, password);
       alert!.success("登录成功");
@@ -103,3 +102,5 @@ export default class LoginForm extends React.Component<Props, State> {
     );
   }
 }
+
+export default connect(UserStore)(LoginForm);

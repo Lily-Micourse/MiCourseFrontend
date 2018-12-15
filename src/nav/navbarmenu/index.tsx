@@ -12,7 +12,7 @@ interface Props extends ConnectedProps {
 
 export default connect(UserStore)((props: Props) => {
 
-  const userStore = props.useStore!(UserStore);
+  const userStore = props.useStore(UserStore);
 
   function logout() {
     userStore.logout();

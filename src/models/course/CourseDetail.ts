@@ -34,5 +34,6 @@ export interface CourseDetail extends CourseIndexes {
   credit: number;
   department: string;
   cover: string;
+  terms: string[];
   hasFeedback: boolean;
 }

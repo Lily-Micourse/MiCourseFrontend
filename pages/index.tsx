@@ -16,8 +16,8 @@ interface Props extends ConnectedProps {
   latestCourses: CourseListItem[];
 }
 
-@connect(UserStore)
-export default class IndexPage extends React.Component<Props> {
+class IndexPage extends React.Component<Props> {
+
   static async getInitialProps() {
     const courseService = useApiService(CourseService);
     return {
@@ -25,8 +25,9 @@ export default class IndexPage extends React.Component<Props> {
       latestCourses: await courseService.getCoursesByType(CourseType.LATEST,0,6)
     }
   }
+
   render() {
-    const userStore = this.props.useStore!(UserStore);
+    const userStore = this.props.useStore(UserStore);
     return (
       <IndexLayout>
         <Container>
@@ -44,3 +45,5 @@ export default class IndexPage extends React.Component<Props> {
     );
   }
 }
+
+export default connect(UserStore)(IndexPage);

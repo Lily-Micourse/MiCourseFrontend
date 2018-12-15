@@ -1,35 +1,37 @@
 import { Subscribe } from "unstated";
-import * as React from "react";
+import React from "react";
 import { HttpServiceType } from "@/apis/HttpService";
 import { useApiService } from "@/apis";
 import { StoreType } from "@/stores/Store";
+import { Omit } from "next/router";
 
 export interface ConnectedProps {
-  useStore?: <CT extends StoreType<any>>(containerType: CT) => InstanceType<CT>;
+  useStore: <CT extends StoreType<any>>(containerType: CT) => InstanceType<CT>;
 }
 
-export function connect<CT extends Array<StoreType<any>> =[]>(...stores: Array<StoreType<any>>) {
-  return (WrappedComponent) => {
+export function connect(...stores: Array<StoreType<any>>) {
+  return <P extends {}>(WrappedComponent: React.ComponentType<P & ConnectedProps>): React.ComponentType<Omit<P, keyof ConnectedProps>> => {
 
-    const Component = (props) => {
-      return (
-        <Subscribe to={stores}>
-          {(...injectedStores) => {
-            const useStore = (containerType: StoreType<any>) => injectedStores.find((x) => x instanceof containerType);
+    const Component = (props) => (
+      <Subscribe to={stores}>
+        {(...injectedStores) => {
+          const useStore = (containerType: StoreType<any>) => injectedStores.find((x) => x instanceof containerType) as any;
 
-            return (
-              <WrappedComponent
-                useStore={useStore}
-                {...props}
-              />
-            );
-          }
+          return (
+            // @ts-ignore
+            <WrappedComponent
+              useStore={useStore}
+              {...props}
+            />
+          );
+        }
 
-          }
-        </Subscribe>
-      ) as any;
-    }
-    Component.getInitialProps = WrappedComponent.getInitialProps;
-    return Component as any;
-  };
+        }
+      </Subscribe>
+    );
+
+    Component.getInitialProps = (WrappedComponent as any).getInitialProps;
+    return Component;
+  }
 }
+

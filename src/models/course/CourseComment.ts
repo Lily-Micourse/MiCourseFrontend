@@ -1,3 +1,9 @@
+export enum CommentVoting {
+  AGREE = 1,
+  NEUTRAL = 0,
+  DISAGREE = -1,
+}
+
 export interface Comment {
   id: string;
   userId: string;
@@ -10,7 +16,7 @@ export interface Comment {
   comments: SubComment[];
   agree: number;
   disagree: number;
-  voting: -1 | 0 | 1;
+  voting: CommentVoting;
 }
 
 export interface SubComment {
@@ -25,5 +31,5 @@ export interface SubComment {
   subcomments: SubComment[];
   agree: number;
   disagree: number;
-  voting: -1 | 0 | 1;
+  voting: CommentVoting;
 }
