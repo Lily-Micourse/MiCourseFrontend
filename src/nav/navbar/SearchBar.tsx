@@ -17,8 +17,8 @@ export default class SearchBar extends React.Component<Props, State> {
     this.setState({ keyword: e.target.value });
   }
 
-  handleSubmit = () => {
-
+  handleSubmit = (e) => {
+    e.preventDefault();
     Router.push({
       pathname: "/course",
       query: { queryType: "string", query: this.state.keyword },
