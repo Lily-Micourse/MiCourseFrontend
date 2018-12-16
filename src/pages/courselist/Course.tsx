@@ -5,16 +5,10 @@ import { FaComment } from "~/node_modules/react-icons/fa";
 import { IconContext } from "react-icons";
 import Link from "next/link";
 import styled from "styled-components";
-import { Star } from "@/components/ui/Star";
+import { Rate } from "@/components/ui/Rate";
 import Label from "@/components/ui/Label";
 import Hexagon from "@/components/ui/Hexagon";
 import college from "~/static/icons/college.png";
-
-const StyledStar = styled(Star)`
-  width: 13px;
-  height: 12px;
-  padding-right: 3px;
-`;
 
 const TittleLink = styled.a`
   font-size:16px;
@@ -68,7 +62,7 @@ export function CourseListItemBox({ course }: { course: CourseListItem }) {
             </Link>
           </ItemHeader>
           <ItemRate>
-            <StyledStar rate={course.rate} />
+            <Rate rate={course.rate} />
           </ItemRate>
         </Col>
       </Row>
