@@ -6,10 +6,9 @@ import { waitForMs } from "@/utils/wait";
 import { CourseFeedback } from "@/models/course/CourseFeedback";
 import { CommentFeedbackAction, CommentFeedback } from "@/models/course/CommentFeedback";
 
-const terms = [ "2018年春季学期", "2017年秋季学期" ];
+const terms = ["2018年春季学期", "2017年秋季学期"];
 
 export class CourseServiceMock extends CourseService {
-
 
   async getCourseDetail(courseId: string) {
     return {
@@ -29,7 +28,6 @@ export class CourseServiceMock extends CourseService {
       credit: 3,
       department: "计算机科学与技术学院",
       cover: "",
-      hasFeedback: false,
       terms,
       pressureIndexes: {
         low: 30,
@@ -58,36 +56,50 @@ export class CourseServiceMock extends CourseService {
     };
   }
 
+  async courseHasFeedback(courseId: string) {
+    return false;
+  }
+
+  async getCommentVotings(courseId: string) {
+    return {
+      comments: { [1]: -1 },
+      subComments: { },
+    };
+  }
+
   async getCoursesByType(type: CourseType, page: number, pageSize: number = 15): Promise<CourseListItem[]> {
     return this.generateCourseList(page * pageSize, pageSize);
   }
 
-  async getCoursesByQuery(queryType: CourseQueryType,
-    query: string, page: number, pageSize: number = 15): Promise<CourseListItem[]> {
-      return this.generateCourseList(page * pageSize, pageSize);
+  async getCoursesByQuery(
+    queryType: CourseQueryType,
+    query: string,
+    page: number,
+    pageSize: number = 15,
+  ): Promise<CourseListItem[]> {
+    return this.generateCourseList(page * pageSize, pageSize);
   }
-
 
   generateCourseList(start: number, length: number): CourseListItem[] {
     const res: CourseListItem[] = [];
-    const covers:string[]=[
+    const covers: string[] = [
       "http://www.micourse.net/Public/img/icons/film.png",
       "http://www.micourse.net/Public/img/icons/art.png",
       "http://www.micourse.net/Public/img/icons/music.png",
       "http://www.micourse.net/Public/img/icons/history.png",
     ];
-    range(start, start + length).map(x => res.push(
+    range(start, start + length).map((x) => res.push(
       {
         id: "00" + x,
         name: "课程" + x,
-        cover: covers[Math.floor(Math.random()*covers.length)],
-        rate: parseFloat(Number(Math.random()*5).toFixed(1)),
+        cover: covers[Math.floor(Math.random() * covers.length)],
+        rate: parseFloat(Number(Math.random() * 5).toFixed(1)),
         credit: 2,
         department: "软件学院",
         category: "通识课",
         commentNum: 10,
-      }
-    ))
+      },
+    ));
     return res;
   }
 

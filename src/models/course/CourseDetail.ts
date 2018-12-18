@@ -35,5 +35,4 @@ export interface CourseDetail extends CourseIndexes {
   department: string;
   cover: string;
   terms: string[];
-  hasFeedback: boolean;
 }

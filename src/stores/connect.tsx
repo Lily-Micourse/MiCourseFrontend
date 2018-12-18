@@ -32,6 +32,5 @@ export function connect(...stores: Array<StoreType<any>>) {
 
     Component.getInitialProps = (WrappedComponent as any).getInitialProps;
     return Component;
-  }
+  };
 }
-
