@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ContainerStyle, CardStyle, PagesStyle } from "@/components/ui/index";
+import { ContainerStyle, PagesStyle } from "@/components/ui/index";
 import { Row, Col } from "reactstrap";
 import MediaQuery from "react-responsive";
 import breakpoints from "@/utils/breakpoints";
@@ -23,24 +23,16 @@ export default function CommonPage(props: Props) {
         <MediaQuery minWidth={breakpoints.lg}>
           <Row>
             <Col lg={8}>
-              <CardStyle>
-                {childrenLeft}
-              </CardStyle>
+              {childrenLeft}
             </Col>
             <Col lg={4}>
-              <CardStyle>
-                {childrenRight}
-              </CardStyle>
+              {childrenRight}
             </Col>
           </Row>
         </MediaQuery>
         <MediaQuery maxWidth={breakpoints.lg}>
-          <CardStyle>
-            {childrenRight}
-          </CardStyle>
-          <CardStyle>
-            {childrenLeft}
-          </CardStyle>
+          {childrenRight}
+          {childrenLeft}
         </MediaQuery>
       </ContainerStyle>
     </PagesStyle>

@@ -13,6 +13,7 @@ const Section = styled.div`
       padding: 8px 16px;
       border-left: 3px solid #88C5E1;
     }
+    
 `;
 
 export default Section;

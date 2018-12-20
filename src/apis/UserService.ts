@@ -1,4 +1,7 @@
 import { HttpError, HttpMethod, HttpService } from "./HttpService";
+import { User } from "@/models/user/User";
+import { UserBasicSetting } from "@/models/user/UserBasicSetting";
+import { UserPasswordSetting } from "@/models/user/UserPasswordSetting";
 
 export interface LoginResponse {
   token?: string;
@@ -35,6 +38,68 @@ export class UserService extends HttpService {
       } else {
         throw e;
       }
+    }
+  }
+
+  async getInfo(): Promise<User> {
+    try {
+      const token = this.axios.defaults.headers.common.Authorization;
+      const data = await this.fetch<User>({
+        method: HttpMethod.GET,
+        body: { token },
+        path: "/user/info",
+      });
+      return data;
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  async setInfo(userInfo: UserBasicSetting) {
+    try {
+      const token = this.axios.defaults.headers.common.Authorization;
+      await this.fetch({
+        method: HttpMethod.PUT,
+        headers: { Authorization: token },
+        body: { userInfo },
+        path: "/user/info",
+      });
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  async setPassword(userPassword: UserPasswordSetting): Promise<"success" | "incorrect"> {
+    try {
+      const token = this.axios.defaults.headers.common.Authorization;
+      await this.fetch({
+        method: HttpMethod.PUT,
+        headers: { Authorization: token },
+        body: { userPassword },
+        path: "/user/password",
+      });
+      return "success";
+    } catch (e) {
+      const e1 = e as HttpError;
+      if (e1.status === 403) {
+        return "incorrect";
+      } else {
+        throw e;
+      }
+    }
+  }
+
+  async setAvatar(newavatar: string) {
+    try {
+      const token = this.axios.defaults.headers.common.Authorization;
+      await this.fetch({
+        method: HttpMethod.PUT,
+        headers: { Authorization: token },
+        body: { avatar: newavatar },
+        path: "/user/password",
+      });
+    } catch (e) {
+      throw e;
     }
   }
 

@@ -48,7 +48,7 @@ const IconOverlay = styled(Overlay)`
   }
 `;
 
-export default class Avater extends React.Component<Props, State> {
+export default class Avatar extends React.Component<Props, State> {
 
   state = {
     visibility: false,

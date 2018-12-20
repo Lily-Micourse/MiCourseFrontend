@@ -1,12 +1,21 @@
 import React from "react";
-import Avater from "./Avater";
+import Avatar from "./Avatar";
 import styled from "styled-components";
 import DefaultAvater from "~/static/img/default-avatar.png";
 import { Button } from "reactstrap";
 import Router from "next/router";
+import { User } from "@/models/user/User";
+
+interface Props {
+  user: User;
+}
 
 const UserInfoStyled = styled.div`
   text-align: center;
+  margin: 0 0 20px 0;
+  background-color: #FFFFFF;
+  border-radius: 1px 1px 1px 1px;
+  box-shadow: 0 14px 10px -10px rgba(0,0,0,0.1);
 `;
 
 const UserInfoPage = styled.div`
@@ -38,7 +47,7 @@ const UserFooter = styled.div`
   padding: 10px 0 20px 0;
 `;
 
-export default function UserInfo() {
+export default function UserInfo(props: Props) {
 
   const settings = () => {
     Router.push("/settings");
@@ -48,18 +57,29 @@ export default function UserInfo() {
     Router.push("/messages");
   };
 
+  let gender = "未填写";
+
+  if (props.user.gender) {
+    if (props.user.gender === "female") {
+      gender = "女";
+    } else if (props.user.gender === "male") {
+      gender = "男";
+    }
+  }
+
   return (
     <UserInfoStyled>
       <UserInfoPage>
-        <Avater avater={DefaultAvater} height={80}/>
-        <UserName>1344885846_qq</UserName>
+        <Avatar avater={props.user.avatar ? props.user.avatar : DefaultAvater} height={80}/>
+        <UserName>{props.user.nickname ? props.user.nickname : "未填写"}</UserName>
         <InfoBlock>
-          <InfoLine>性别: <span>未填写</span></InfoLine>
-          <InfoLine>生日: <span>未填写</span></InfoLine>
-          <InfoLine>院系: <span>未填写</span></InfoLine>
-          <InfoLine>邮箱: <span>1344885846@qq.com</span></InfoLine>
-          <InfoLine>QQ号: <span>未填写</span></InfoLine>
-          <InfoLine>入学年份: <span>未填写</span></InfoLine>
+          <InfoLine>性别: <span>{gender}</span></InfoLine>
+          {/*<InfoLine>生日: <span>未填写</span></InfoLine>*/}
+          <InfoLine>院系: <span>{props.user.department ? props.user.department : "未填写"}</span></InfoLine>
+          <InfoLine>专业: <span>{props.user.major ? props.user.major : "未填写"}</span></InfoLine>
+          <InfoLine>邮箱: <span>{props.user.email ? props.user.email : "未填写"}</span></InfoLine>
+          <InfoLine>QQ号: <span>{props.user.qq ? props.user.qq : "未填写"}</span></InfoLine>
+          <InfoLine>年级: <span>{props.user.grade ? props.user.grade : "未填写"}</span></InfoLine>
         </InfoBlock>
       </UserInfoPage>
       <UserFooter>
