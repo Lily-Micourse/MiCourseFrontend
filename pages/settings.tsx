@@ -5,11 +5,12 @@ import styled from "styled-components";
 import Section from "@/components/ui/Section";
 import { Nav, NavItem, NavLink } from "reactstrap";
 import SettingBasic from "@/pages/user/settings/SettingBasic";
-import SettingAvater from "@/pages/user/settings/SettingAvater";
+import SettingAvatar from "@/pages/user/settings/SettingAvatar";
 import SettingPassword from "@/pages/user/settings/SettingPassword";
 import { UserService } from "@/apis/UserService";
 import { useApiService } from "@/apis";
 import { User } from "@/models/user/User";
+import DefaultAvatar from "~/static/img/default-avatar.png";
 
 interface State {
   SelectBasic: boolean;
@@ -137,7 +138,7 @@ export default class Setting extends React.Component<Props, State> {
             <SettingBasic userInfo={this.props.userInfo}/>
           </TransitionBlock>
           <TransitionBlock visibility={this.state.SelectAvater}>
-            <SettingAvater/>
+            <SettingAvatar avatar={this.props.userInfo.avatar ? this.props.userInfo.avatar : DefaultAvatar}/>
           </TransitionBlock>
           <TransitionBlock visibility={this.state.SelectPassword}>
             <SettingPassword/>

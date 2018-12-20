@@ -35,6 +35,7 @@
     "react": "^16.6.3",
     "react-alert": "^4.0.4",
     "react-alert-template-basic": "^1.0.0",
+    "react-cropper": "^1.0.1",
     "react-dom": "^16.6.3",
     "react-icons": "^3.2.2",
     "react-responsive": "^6.0.1",

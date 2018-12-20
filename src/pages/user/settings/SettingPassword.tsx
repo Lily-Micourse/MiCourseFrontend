@@ -100,6 +100,7 @@ export default class SettingPassword extends React.Component<Props, State> {
           color="primary"
           size="sm"
           onClick={this.update}
+          disabled={this.state.loading}
         >
           { this.state.loading
             ? "更新中"

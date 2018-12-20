@@ -1,7 +1,7 @@
 import React from "react";
 import Avatar from "./Avatar";
 import styled from "styled-components";
-import DefaultAvater from "~/static/img/default-avatar.png";
+import DefaultAvatar from "~/static/img/default-avatar.png";
 import { Button } from "reactstrap";
 import Router from "next/router";
 import { User } from "@/models/user/User";
@@ -70,7 +70,7 @@ export default function UserInfo(props: Props) {
   return (
     <UserInfoStyled>
       <UserInfoPage>
-        <Avatar avater={props.user.avatar ? props.user.avatar : DefaultAvater} height={80}/>
+        <Avatar avatar={props.user.avatar ? props.user.avatar : DefaultAvatar} height={80}/>
         <UserName>{props.user.nickname ? props.user.nickname : "未填写"}</UserName>
         <InfoBlock>
           <InfoLine>性别: <span>{gender}</span></InfoLine>

@@ -37,6 +37,6 @@ export default class UserServiceMock extends UserService {
   }
 
   async setAvatar(newavatar: string) {
-
+    console.log(newavatar);
   }
 }
