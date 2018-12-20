@@ -1,9 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Button } from "reactstrap";
-import Router from "next/router";
 import Link from "next/link";
-import { url } from "inspector";
 
 interface Props {
     value: string;

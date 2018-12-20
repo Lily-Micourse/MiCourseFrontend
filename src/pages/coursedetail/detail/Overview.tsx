@@ -19,10 +19,9 @@ interface Props {
     credit: number;
     department: string;
     cover: string;
-    hasFeedback: boolean;
     terms: string[];
   };
-  refetch(): void;
+  children: React.ReactNode;
 }
 
 const InfoAvatar = styled.div`
@@ -111,7 +110,7 @@ function Star({ rate }: { rate: number }) {
 
 }
 
-export default function Overview({ info, refetch }: Props) {
+export default function Overview({ info, children }: Props) {
   return (
     <StyledSection>
       <Row>
@@ -122,12 +121,7 @@ export default function Overview({ info, refetch }: Props) {
             </InfoIcon>
             <h3>{info.name}</h3>
             <Star rate={info.rate} />
-            <FeedbackButtonGroup
-              refetchDetail={refetch}
-              terms={info.terms}
-              courseId={info.id}
-              hasFeedback={info.hasFeedback}
-            />
+            {children}
           </InfoAvatar>
         </Col>
         <Col md={4}>

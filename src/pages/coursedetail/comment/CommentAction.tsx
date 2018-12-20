@@ -3,9 +3,11 @@ import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 import { useApiService } from "@/apis";
 import { CourseService } from "@/apis/CourseService";
 import { connect, ConnectedProps } from "@/stores/connect";
-import { CommentStore } from "./CommentStore";
 import { CommentVoting } from "@/models/course/CourseComment";
 import styled from "styled-components";
+import CourseDetailPage from "..";
+import CourseDetailStore from "../CourseDetailStore";
+import CommentStore from "../CommentStore";
 
 interface Props extends ConnectedProps {
   commentId: string;
@@ -28,21 +30,21 @@ const StyledLink = styled.a`
 
 export default connect(CommentStore)(function CommentAction({ commentId, subCommentId, useStore }: Props) {
 
-  const commentStore = useStore(CommentStore);
+  const store = useStore(CommentStore);
 
-  const comment = commentStore.getComment(commentId, subCommentId);
+  const comment = store.getComment(commentId, subCommentId);
 
   return (
     <div>
       <StyledLink
-        active={comment.voting === CommentVoting.AGREE}
-        onClick={() => commentStore.agree(commentId, subCommentId)}
+        active={store.getVoting(commentId, subCommentId) === CommentVoting.AGREE}
+        onClick={() => store.agree(commentId, subCommentId)}
       >
         <FaThumbsUp /> {comment.agree}
       </StyledLink>
       <StyledLink
-        active={comment.voting === CommentVoting.DISAGREE}
-        onClick={() => commentStore.disagree(commentId, subCommentId)}
+        active={store.getVoting(commentId, subCommentId) === CommentVoting.DISAGREE}
+        onClick={() => store.disagree(commentId, subCommentId)}
       >
         <FaThumbsDown /> {comment.disagree}
       </StyledLink>

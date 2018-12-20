@@ -16,7 +16,7 @@ export interface Comment {
   comments: SubComment[];
   agree: number;
   disagree: number;
-  voting: CommentVoting;
+
 }
 
 export interface SubComment {
@@ -31,5 +31,9 @@ export interface SubComment {
   subcomments: SubComment[];
   agree: number;
   disagree: number;
-  voting: CommentVoting;
+}
+
+export interface CommentVotings {
+  comments: { [commentId: string]: CommentVoting };
+  subComments: { [subcommentId: string]: CommentVoting };
 }

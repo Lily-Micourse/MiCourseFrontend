@@ -21,17 +21,17 @@ export default class Description extends React.Component<Props, State> {
     expanded: false,
   };
 
-  toggle = () => {
-    this.setState({
-      expanded: !this.state.expanded,
-    });
-  }
-
   constructor(props) {
     super(props);
 
     this.description1 = this.props.content.slice(0, charLimit);
     this.description2 = this.props.content.slice(charLimit + 1);
+  }
+
+  toggle = () => {
+    this.setState({
+      expanded: !this.state.expanded,
+    });
   }
 
   render() {

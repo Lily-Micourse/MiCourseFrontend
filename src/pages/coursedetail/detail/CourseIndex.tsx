@@ -61,19 +61,19 @@ const RateLabels = styled.div`
 `;
 
 const RatePowers = styled.div`
-   padding: 5px 0 0 3px;
-   text-align: left;
+  padding: 5px 0 0 3px;
+  text-align: left;
 
-   float: left;
+  float: left;
 
-       @media (min-width: ${breakpoints.lg}) and (max-width: ${breakpoints.lgMax}) {
-       padding: 0 0 0 2px;
-        text-align: left;
+  @media (min-width: ${breakpoints.lg}) and (max-width: ${breakpoints.lgMax}) {
+  padding: 0 0 0 2px;
+  text-align: left;
 
-        div span {
-          font-size: .625rem;
-        }
-       }
+  div span {
+    font-size: .625rem;
+  }
+  }
 `;
 
 const RatePower = styled.div`

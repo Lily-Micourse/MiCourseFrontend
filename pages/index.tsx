@@ -22,8 +22,8 @@ class IndexPage extends React.Component<Props> {
     const courseService = useApiService(CourseService);
     return {
       hottestCourses: await courseService.getCoursesByType(CourseType.HOT, 0, 6),
-      latestCourses: await courseService.getCoursesByType(CourseType.LATEST,0,6)
-    }
+      latestCourses: await courseService.getCoursesByType(CourseType.LATEST, 0, 6),
+    };
   }
 
   render() {

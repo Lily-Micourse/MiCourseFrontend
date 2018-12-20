@@ -2,7 +2,7 @@ import { HttpMethod, HttpService } from "@/apis/HttpService";
 import { CourseDetail } from "@/models/course/CourseDetail";
 import { CourseListItem } from "@/models/course/Course";
 import { CourseQueryType, CourseType } from "@/models/course/CourseQuery";
-import { Comment } from "@/models/course/CourseComment";
+import { Comment, CommentVotings } from "@/models/course/CourseComment";
 import { CourseFeedback } from "@/models/course/CourseFeedback";
 import { CommentFeedbackAction, CommentFeedback } from "@/models/course/CommentFeedback";
 
@@ -49,6 +49,22 @@ export class CourseService extends HttpService {
   async getAllTerms(courseId: string) {
     return this.fetch<string[]>({
       path: "/course/term",
+      params: { courseId },
+    });
+  }
+
+  async courseHasFeedback(courseId: string) {
+    const res = await this.fetch<{ feedback: boolean}>({
+      path: "/course/feedback",
+      params: { courseId },
+    });
+
+    return res.feedback;
+  }
+
+  async getCommentVotings(courseId: string) {
+    return this.fetch<CommentVotings>({
+      path: "/course/comment/voting",
       params: { courseId },
     });
   }
