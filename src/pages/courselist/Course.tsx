@@ -55,7 +55,7 @@ export function CourseListItemBox({ course }: { course: CourseListItem }) {
             <Link href={{ pathname: "/course", query: { id: course.id } }}>
               <TittleLink>{course.name}</TittleLink>
             </Link>
-            <Link>
+            <Link scroll={false} href={{ pathname: "/course", query: { id: course.id }, hash:"comment" }}>
               <CommentLink>
                 <FaComment />{course.commentNum}
               </CommentLink>

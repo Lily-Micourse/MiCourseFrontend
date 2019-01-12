@@ -1,4 +1,4 @@
-import { CourseService } from "@/apis/CourseService";
+import { CourseService, CourseListResponse } from "@/apis/CourseService";
 import { CourseListItem } from "@/models/course/Course";
 import { CourseQueryType, CourseType } from "@/models/course/CourseQuery";
 import { range } from "@/utils/range";
@@ -6,7 +6,7 @@ import { waitForMs } from "@/utils/wait";
 import { CourseFeedback } from "@/models/course/CourseFeedback";
 import { CommentFeedbackAction, CommentFeedback } from "@/models/course/CommentFeedback";
 
-const terms = [ "2018年春季学期", "2017年秋季学期" ];
+const terms = ["2018年春季学期", "2017年秋季学期"];
 
 export class CourseServiceMock extends CourseService {
 
@@ -58,37 +58,45 @@ export class CourseServiceMock extends CourseService {
     };
   }
 
-  async getCoursesByType(type: CourseType, page: number, pageSize: number = 15): Promise<CourseListItem[]> {
+  async getCoursesByType(type: CourseType, page: number, pageSize: number = 15): Promise<CourseListResponse> {
     return this.generateCourseList(page * pageSize, pageSize);
   }
 
   async getCoursesByQuery(queryType: CourseQueryType,
-    query: string, page: number, pageSize: number = 15): Promise<CourseListItem[]> {
-      return this.generateCourseList(page * pageSize, pageSize);
+    query: string, page: number, pageSize: number = 15): Promise<CourseListResponse> {
+    return this.generateCourseList(page * pageSize, pageSize);
   }
 
 
-  generateCourseList(start: number, length: number): CourseListItem[] {
+  generateCourseList(start: number, length: number): CourseListResponse {
     const res: CourseListItem[] = [];
-    const covers:string[]=[
+    const covers: string[] = [
       "http://www.micourse.net/Public/img/icons/film.png",
       "http://www.micourse.net/Public/img/icons/art.png",
       "http://www.micourse.net/Public/img/icons/music.png",
       "http://www.micourse.net/Public/img/icons/history.png",
     ];
+    const names: string[] = [
+      "俄罗斯文学经典的当代意义",
+      "西方音乐通论",
+      "中国书画鉴赏",
+      "科学世界观",
+      "艺术原理与艺术经典",
+      "中国早期文明：商周至两汉"
+    ];
     range(start, start + length).map(x => res.push(
       {
         id: "00" + x,
-        name: "课程" + x,
-        cover: covers[Math.floor(Math.random()*covers.length)],
-        rate: parseFloat(Number(Math.random()*5).toFixed(1)),
+        name: names[Math.floor(Math.random() * names.length)] + x,
+        cover: covers[Math.floor(Math.random() * covers.length)],
+        rate: parseFloat(Number(Math.random() * 5).toFixed(1)),
         credit: 2,
         department: "软件学院",
         category: "通识课",
         commentNum: 10,
       }
     ))
-    return res;
+    return { count: 13, data: res };
   }
 
   async getCourseComments(courseId: string) {

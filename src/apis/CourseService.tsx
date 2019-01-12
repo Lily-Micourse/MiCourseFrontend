@@ -13,6 +13,11 @@ interface CourseListQuery {
   page: number;
   pageSize: number;
 }
+export interface CourseListResponse {
+  count: number,
+  data: CourseListItem[]
+}
+
 
 export class CourseService extends HttpService {
   async getCourseDetail(courseId: string) {
@@ -54,14 +59,14 @@ export class CourseService extends HttpService {
   }
 
   async getCoursesByType(type: CourseType,
-                         page: number,
-                         pageSize: number = 15,
-                         ): Promise<CourseListItem[]> {
+    page: number,
+    pageSize: number = 15,
+  ): Promise<CourseListResponse> {
     return this.getCourses({ type, page, pageSize });
   }
 
   async getCoursesByQuery(queryType: CourseQueryType,
-                          query: string, page: number, pageSize: number = 15): Promise<CourseListItem[]> {
+    query: string, page: number, pageSize: number = 15): Promise<CourseListResponse> {
     return this.getCourses({ queryType, query, page, pageSize });
   }
 
@@ -84,11 +89,12 @@ export class CourseService extends HttpService {
 
   }
 
-  private async getCourses(query: CourseListQuery): Promise<CourseListItem[]> {
-    return this.fetch<CourseListItem[]>({
+  private async getCourses(query: CourseListQuery): Promise<CourseListResponse> {
+    const res = this.fetch<CourseListItem[]>({
       path: "course",
       method: HttpMethod.GET,
       params: query,
     });
+    return {count:1,data:[]};
   }
 }

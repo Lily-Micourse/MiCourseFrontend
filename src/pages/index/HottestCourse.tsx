@@ -24,9 +24,16 @@ const CardIcon = styled.div`
   margin-bottom:10px;
 `;
 
-const CardTittle = styled(PrimaryLink)`
-    font-size: 1.125rem;
-    font-weight:600;
+
+const CardTittle = styled.div`
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+  font-size: 1.125rem;
+  font-weight:600;
+  :hover{
+    color:#54abd4;
+  }
 `;
 
 
@@ -59,11 +66,11 @@ function CourseCard({ course }: { course: CourseListItem }) {
         <CardIcon>
           <Hexagon url={course.cover} width={44} height={55} />
         </CardIcon>
-        <div>
+        <CardTittle>
           <Link href={{ pathname: "/course", query: { id: course.id } }}>
-            <CardTittle>{course.name}</CardTittle>
+            <PrimaryLink>{course.name}</PrimaryLink>
           </Link>
-        </div>
+        </CardTittle>
         <CardLabels>
           <Label value={course.category} type={CourseQueryType.CATEGORY} />
           <Label value={course.department} type={CourseQueryType.DEPARTMENT} />

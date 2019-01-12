@@ -27,7 +27,7 @@ export default connect(CommentStore)(function CourseCommentPanel(props: Props) {
 
   return (
     <Section>
-      <h4>课程评论</h4>
+      <h4 id="comment">课程评论</h4>
       <InputPanel
         terms={props.terms}
         courseId={props.courseId}
