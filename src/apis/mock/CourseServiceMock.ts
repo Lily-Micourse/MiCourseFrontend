@@ -1,4 +1,4 @@
-import { CourseService } from "@/apis/CourseService";
+import { CourseService, CourseListResponse } from "@/apis/CourseService";
 import { CourseListItem } from "@/models/course/Course";
 import { CourseQueryType, CourseType } from "@/models/course/CourseQuery";
 import { range } from "@/utils/range";
@@ -9,6 +9,7 @@ import { CommentFeedbackAction, CommentFeedback } from "@/models/course/CommentF
 const terms = ["2018年春季学期", "2017年秋季学期"];
 
 export class CourseServiceMock extends CourseService {
+
 
   async getCourseDetail(courseId: string) {
     return {
@@ -28,6 +29,7 @@ export class CourseServiceMock extends CourseService {
       credit: 3,
       department: "计算机科学与技术学院",
       cover: "",
+      hasFeedback: false,
       terms,
       pressureIndexes: {
         low: 30,
@@ -56,31 +58,17 @@ export class CourseServiceMock extends CourseService {
     };
   }
 
-  async courseHasFeedback(courseId: string) {
-    return false;
-  }
-
-  async getCommentVotings(courseId: string) {
-    return {
-      comments: { [1]: -1 },
-      subComments: { },
-    };
-  }
-
-  async getCoursesByType(type: CourseType, page: number, pageSize: number = 15): Promise<CourseListItem[]> {
+  async getCoursesByType(type: CourseType, page: number, pageSize: number = 15): Promise<CourseListResponse> {
     return this.generateCourseList(page * pageSize, pageSize);
   }
 
-  async getCoursesByQuery(
-    queryType: CourseQueryType,
-    query: string,
-    page: number,
-    pageSize: number = 15,
-  ): Promise<CourseListItem[]> {
+  async getCoursesByQuery(queryType: CourseQueryType,
+    query: string, page: number, pageSize: number = 15): Promise<CourseListResponse> {
     return this.generateCourseList(page * pageSize, pageSize);
   }
 
-  generateCourseList(start: number, length: number): CourseListItem[] {
+
+  generateCourseList(start: number, length: number): CourseListResponse {
     const res: CourseListItem[] = [];
     const covers: string[] = [
       "http://www.micourse.net/Public/img/icons/film.png",
@@ -88,19 +76,27 @@ export class CourseServiceMock extends CourseService {
       "http://www.micourse.net/Public/img/icons/music.png",
       "http://www.micourse.net/Public/img/icons/history.png",
     ];
-    range(start, start + length).map((x) => res.push(
+    const names: string[] = [
+      "俄罗斯文学经典的当代意义",
+      "西方音乐通论",
+      "中国书画鉴赏",
+      "科学世界观",
+      "艺术原理与艺术经典",
+      "中国早期文明：商周至两汉"
+    ];
+    range(start, start + length).map(x => res.push(
       {
         id: "00" + x,
-        name: "课程" + x,
+        name: names[Math.floor(Math.random() * names.length)] + x,
         cover: covers[Math.floor(Math.random() * covers.length)],
         rate: parseFloat(Number(Math.random() * 5).toFixed(1)),
         credit: 2,
         department: "软件学院",
         category: "通识课",
         commentNum: 10,
-      },
-    ));
-    return res;
+      }
+    ))
+    return { count: 13, data: res };
   }
 
   async getCourseComments(courseId: string) {
